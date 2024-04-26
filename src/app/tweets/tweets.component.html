@@ -3,17 +3,34 @@
         <!-- Breadcrumb -->
         <nav class="flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+            <li class="inline-flex items-center">
+                <a href="/daftar-laporan" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                Laporan
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                <svg class="rtl:rotate-180 block w-3 h-3 mx-1 text-gray-400 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                </svg>
+                <a href="/detail-laporan" class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Detail Laporan</a>
+                </div>
+            </li>
             <li aria-current="page">
                 <div class="flex items-center">
-                <span class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">Laporan</span>
+                <svg class="rtl:rotate-180  w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                </svg>
+                <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Tweets</span>
                 </div>
             </li>
             </ol>
         </nav>
     </div>
     <div class="flex flex-col items-start"> <!-- Adjusted -->
-        <p class="text-black text-2xl font-semibold ms-6 mb-4">Daftar Laporan</p>
+        <p class="text-black text-2xl font-semibold mb-2 ms-6">Tweets</p>
     </div>
+    
     <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
         <label for="table-search" class="sr-only">Search</label>
         <div class="relative">
@@ -74,19 +91,13 @@
                     ID
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Nomor Rekening
+                    Date
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Jumlah Laporan
+                    Username
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Status
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Assignee
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Action
+                    Tweet
                 </th>
             </tr>
         </thead>
@@ -96,79 +107,41 @@
                     02551621335
                 </th>
                 <td class="px-6 py-4">
-                    1155499325
+                    20/02/2024
                 </td>
                 <td class="px-6 py-4">
-                    11
+                    cheesycake
                 </td>
                 <td class="px-6 py-4">
-                    <span class="bg-yellow-100 text-yellow-500 rounded-lg p-2">Investigasi</span>
-                </td>
-                <td class="px-6 py-4">
-                    Admin1
-                </td>
-                <td class="px-6 py-4">
-                    <a href="/detail-laporan" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
+                    <a href="https://twitter.com/home?lang=en">https://twitter.com/home?lang=en</a>
                 </td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    02551621335
+                    02551621257
                 </th>
                 <td class="px-6 py-4">
-                    1155499325
+                    21/02/2024
                 </td>
                 <td class="px-6 py-4">
-                    11
+                    berkebutsemalam
                 </td>
                 <td class="px-6 py-4">
-                    <span class="bg-gray-100 text-black rounded-lg p-2">Dilaporkan</span>
-                </td>
-                <td class="px-6 py-4">
-                    Admin1
-                </td>
-                <td class="px-6 py-4">
-                    <a href="/detail-laporan" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
+                    $1999
                 </td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    02551621335
+                    02551621197
                 </th>
                 <td class="px-6 py-4">
-                    1155499325
+                    22/02/2024
                 </td>
                 <td class="px-6 py-4">
-                    11
+                    berselimutdendam
                 </td>
                 <td class="px-6 py-4">
-                    <span class="bg-yellow-100 text-yellow-500 rounded-lg p-2">Investigasi</span>
-                </td>
-                <td class="px-6 py-4">
-                    Admin1
-                </td>
-                <td class="px-6 py-4">
-                    <a href="/detail-laporan" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
-                </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    02551621335
-                </th>
-                <td class="px-6 py-4">
-                    1155499325
-                </td>
-                <td class="px-6 py-4">
-                    11
-                </td>
-                <td class="px-6 py-4">
-                    <span class="bg-gray-100 text-black rounded-lg p-2">Dilaporkan</span>
-                </td>
-                <td class="px-6 py-4">
-                    Admin1
-                </td>
-                <td class="px-6 py-4">
-                    <a href="/detail-laporan" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
+                    $1999
                 </td>
             </tr>
         </tbody>
