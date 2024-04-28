@@ -1,5 +1,7 @@
 <app-container>
-    <app-navbar></app-navbar>
-    <app-sidebar></app-sidebar>
+
+    <app-navbar *ngIf="this.showNav"></app-navbar>
+    <app-sidebar *ngIf="this.showNav"></app-sidebar>
     <router-outlet></router-outlet>
+
 </app-container>
