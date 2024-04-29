@@ -7,8 +7,9 @@ import { TweetsComponent } from './tweets/tweets.component';
 import { DetailLaporanComponent } from './detail-laporan/detail-laporan.component';
 
 export const routes:  Routes = [
+  // TODO: Later make sure to add "authenticated" logic for this base path 
+  { path: '', redirectTo:'login', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
-  { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'daftar-laporan', component: DaftarLaporanComponent },
   { path: 'daftar-selesai', component: DaftarSelesaiComponent },
