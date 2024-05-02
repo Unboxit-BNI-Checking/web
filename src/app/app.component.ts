@@ -1,5 +1,5 @@
-import { Component, DoCheck, OnInit, ChangeDetectorRef } from '@angular/core';
-import { NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { ContainerComponent } from './container/container.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -25,6 +25,7 @@ export class AppComponent implements OnInit{
   showNav = true
   
   constructor(private router: Router, private cd: ChangeDetectorRef) {
+
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event) => {
@@ -33,7 +34,6 @@ export class AppComponent implements OnInit{
       }
     });
   }
-  
   
   ngOnInit(): void {
     initFlowbite();
