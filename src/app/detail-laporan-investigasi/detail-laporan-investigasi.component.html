@@ -67,32 +67,33 @@
               <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Attachment</label>
               <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
               <div class="mt-4 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">
-                <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button" class="text-orange-500 bg-orange-200 hover:bg-orange-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-orange-500 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center">Investigasi</button>
-                  <div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <button data-modal-target="popup-modal3" data-modal-toggle="popup-modal3" type="button" class="text-red-600 bg-red-300 hover:bg-red-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-600 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center">Blokir Saldo</button>
+                <div id="popup-modal3" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="relative p-4 w-full max-w-md max-h-full">
                         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                            <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
+                            <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal3">
                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                                 </svg>
                                 <span class="sr-only">Close modal</span>
                             </button>
                             <div class="p-4 md:p-5 text-center">
-                                <svg class="mx-auto mb-4 text-orange-500 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <svg class="mx-auto mb-4 text-red-600 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                 </svg>
-                                <h3 class="mb-5 text-lg font-normal text-black dark:text-gray-400">Ubah status ke Investigasi</h3>
-                                <h3 class="mb-5 text-sm font-normal text-gray-500 dark:text-gray-400">Apakah Anda yakin akan mengubah status ini?</h3>
-                                <button data-modal-hide="popup-modal" type="button" class="text-orange-500 bg-orange-200 hover:bg-orange-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-orange-500 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center">
+                                <h3 class="mb-5 text-lg font-normal text-black dark:text-gray-400">Ubah status ke Blokir Saldo</h3>
+                                 <h3 class=" text-sm font-normal text-gray-500 dark:text-gray-400">Saldo dari rekening tersebut akan terblokir.</h3>
+                                 <h3 class="mb-5 text-sm font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin akan mengubah status ini?</h3>
+                                <button data-modal-hide="popup-modal" type="button" class="text-red-600 bg-red-300 hover:bg-red-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-600 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center">
                                     Batal
                                 </button>
-                                <button data-modal-hide="popup-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-orange-500 focus:outline-none bg-orange-200 rounded-full border border-gray-200 hover:bg-orange-500 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Ubah</button>
+                                <button data-modal-hide="popup-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-red-600 focus:outline-none bg-red-300 rounded-full border border-gray-200 hover:bg-red-600 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Ubah</button>
                             </div>
                         </div>
                     </div>
-                  </div>
+                </div>
                 <button data-modal-target="popup-modal2" data-modal-toggle="popup-modal2" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-green-500 focus:outline-none bg-green-200 rounded-full border border-gray-200 hover:bg-green-500 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Bebas Aduan</button>
-                  <div id="popup-modal2" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div id="popup-modal2" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="relative p-4 w-full max-w-md max-h-full">
                         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                             <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal2">
@@ -106,7 +107,7 @@
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                 </svg>
                                 <h3 class="mb-5 text-lg font-normal text-black dark:text-gray-400">Ubah status ke Bebas Aduan</h3>
-                                <h3 class="mb-5 text-sm font-normal text-gray-500 dark:text-gray-400">Apakah Anda yakin akan mengubah status ini?</h3>
+                                 <h3 class="mb-5 text-sm font-normal text-gray-500 dark:text-gray-400">Apakah Anda yakin akan mengubah status ini?</h3>
                                 <button data-modal-hide="popup-modal" type="button" class="text-orange-500 bg-orange-200 hover:bg-orange-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-orange-500 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center">
                                     Batal
                                 </button>
@@ -114,8 +115,8 @@
                             </div>
                         </div>
                     </div>
-                  </div>
-              </div>
+                </div>
+            </div>
           </form>
         </div>
       </div>
