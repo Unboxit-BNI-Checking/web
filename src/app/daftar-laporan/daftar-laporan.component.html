@@ -67,7 +67,7 @@
             </ul>
         </div>
     </div>
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <table class="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
@@ -91,81 +91,21 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <tr *ngFor="let item of data" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    02551621335
+                    {{item.data.reported_account_id}}
                 </th>
                 <td class="px-6 py-4">
-                    1155499325
+                    {{item.data.account_number}}
                 </td>
                 <td class="px-6 py-4">
-                    11
+                    {{item.data.reports_count}}
                 </td>
                 <td class="px-6 py-4">
-                    <span class="bg-yellow-100 text-yellow-500 rounded-lg p-2">Investigasi</span>
+                    <span class="bg-yellow-100 text-yellow-500 rounded-lg p-2">{{item.data.status}}</span>
                 </td>
                 <td class="px-6 py-4">
-                    Admin1
-                </td>
-                <td class="px-6 py-4">
-                    <a href="/detail-laporan" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
-                </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    02551621335
-                </th>
-                <td class="px-6 py-4">
-                    1155499325
-                </td>
-                <td class="px-6 py-4">
-                    11
-                </td>
-                <td class="px-6 py-4">
-                    <span class="bg-gray-100 text-black rounded-lg p-2">Dilaporkan</span>
-                </td>
-                <td class="px-6 py-4">
-                    Admin1
-                </td>
-                <td class="px-6 py-4">
-                    <a href="/detail-laporan" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
-                </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    02551621335
-                </th>
-                <td class="px-6 py-4">
-                    1155499325
-                </td>
-                <td class="px-6 py-4">
-                    11
-                </td>
-                <td class="px-6 py-4">
-                    <span class="bg-yellow-100 text-yellow-500 rounded-lg p-2">Investigasi</span>
-                </td>
-                <td class="px-6 py-4">
-                    Admin1
-                </td>
-                <td class="px-6 py-4">
-                    <a href="/detail-laporan" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
-                </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    02551621335
-                </th>
-                <td class="px-6 py-4">
-                    1155499325
-                </td>
-                <td class="px-6 py-4">
-                    11
-                </td>
-                <td class="px-6 py-4">
-                    <span class="bg-gray-100 text-black rounded-lg p-2">Dilaporkan</span>
-                </td>
-                <td class="px-6 py-4">
-                    Admin1
+                    {{item.data.admin}}
                 </td>
                 <td class="px-6 py-4">
                     <a href="/detail-laporan" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
