@@ -18,6 +18,6 @@ export const routes:  Routes = [
   { path: 'detail-laporan-clear', component: DetailLaporanClearComponent, canActivate: [AuthGuard] },
   { path: 'detail-laporan-investigasi', component: DetailLaporanInvestigasiComponent, canActivate: [AuthGuard] },
   { path: 'daftar-selesai', component: DaftarSelesaiComponent, canActivate: [AuthGuard] },
-  { path: 'detail-laporan', component: DetailLaporanComponent, canActivate: [AuthGuard] },
+  { path: 'detail-laporan/:id', component: DetailLaporanComponent, canActivate: [AuthGuard] },
   { path: 'tweets', component: TweetsComponent, canActivate: [AuthGuard] }
 ];

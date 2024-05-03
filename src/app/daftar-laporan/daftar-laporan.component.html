@@ -91,24 +91,24 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of data" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <tr *ngFor="let item of report_list" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {{item.data.reported_account_id}}
+                    {{item.reported_account_id}}
                 </th>
                 <td class="px-6 py-4">
-                    {{item.data.account_number}}
+                    {{item.account_number}}
                 </td>
                 <td class="px-6 py-4">
-                    {{item.data.reports_count}}
+                    {{item.reports_count}}
                 </td>
                 <td class="px-6 py-4">
-                    <span class="bg-yellow-100 text-yellow-500 rounded-lg p-2">{{item.data.status}}</span>
+                    <span class="bg-yellow-100 text-yellow-500 rounded-lg p-2">{{item.status}}</span>
                 </td>
                 <td class="px-6 py-4">
-                    {{item.data.admin}}
+                    {{item.admin}}
                 </td>
                 <td class="px-6 py-4">
-                    <a href="/detail-laporan" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
+                    <a [routerLink]="'/detail-laporan/' + item.reported_account_id" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
                 </td>
             </tr>
         </tbody>
