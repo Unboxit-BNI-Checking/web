@@ -2,100 +2,54 @@
    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
       <div class="grid grid-cols-4 gap-4 mb-4">
          <div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-4 dark:bg-gray-800 dark:border-gray-700">
-            <img src="../assets/logo_totLaporan.png" class="mb-1" alt="">
-            <div class="flex items-baseline text-gray-900 dark:text-white">
-               <span class="text-3xl font-extrabold tracking-tight">99</span>
-            </div>
-            <span class="text-xl font-normal tracking-tight">Total Laporan</span>
+            <a href="#" routerLink="/daftar-laporan">
+               <img src="../assets/logo_totLaporan.png" class="mb-1" alt="">
+               <div class="flex items-baseline text-gray-900 dark:text-white">
+                  <span class="text-3xl font-extrabold tracking-tight">{{ total_laporan }}</span>
+               </div>
+               <span class="text-xl font-normal tracking-tight">Total Laporan</span>
+            </a>
          </div>
          <div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-4 dark:bg-gray-800 dark:border-gray-700">
             <img src="../assets/logo_totLaporanInvest.png" class="mb-1" alt="">
             <div class="flex items-baseline text-gray-900 dark:text-white">
-               <span class="text-3xl font-extrabold tracking-tight">99</span>
+               <span class="text-3xl font-extrabold tracking-tight">{{ total_investigate }}</span>
             </div>
             <span class="text-xl font-normal tracking-tight">Total Laporan Investigate</span>
          </div>
          <div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-4 dark:bg-gray-800 dark:border-gray-700">
             <img src="../assets/logo_totLaporanSocmed.png" class="mb-1" alt="">
             <div class="flex items-baseline text-gray-900 dark:text-white">
-               <span class="text-3xl font-extrabold tracking-tight">99</span>
+               <span class="text-3xl font-extrabold tracking-tight">{{ total_laporan_sosmed }}</span>
             </div>
             <span class="text-xl font-normal tracking-tight">Total Laporan Sosial Media</span>
          </div>
          <div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-4 dark:bg-gray-800 dark:border-gray-700">
             <img src="../assets/logo_totLaporanMean.png" class="mb-1" alt="">
             <div class="flex items-baseline text-gray-900 dark:text-white">
-               <span class="text-3xl font-extrabold tracking-tight">99</span>
+               <span class="text-3xl font-extrabold tracking-tight">{{ avg_waktu_penanganan_laporan }}</span>
             </div>
-            <span class="text-xl font-normal tracking-tight">Waktu Rata-rata Penanganan Laporan (Bulan)</span>
+            <span class="text-xl font-normal tracking-tight">Waktu Rata-rata Penanganan Laporan (Hari)</span>
          </div>
       </div>
       <div class="grid grid-cols-2 gap-4 mb-4">
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-      </div>
-      <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
-         <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-            </svg>
-         </p>
-      </div>
-      <div class="grid grid-cols-2 gap-4">
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
+        <div class="max-w-xl w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+          <div class="flex justify-start items-center">
+            <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white pe-1">Laporan Selesai</h5>
+          </div>
+
+          <!-- Donut Chart -->
+          <div class="py-6" id="donut-chart"></div>
+
+        </div>
+        <div class="max-w-xl w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4  md:p-6">
+          <div class="flex justify-start items-center">
+            <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white pe-1">Laporan Selesai Per Bulan</h5>
+          </div>
+            <div id="column-chart">
+
+            </div>
+        </div>
+        
       </div>
    </div>
-</div>
