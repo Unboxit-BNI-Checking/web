@@ -94,145 +94,31 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    02551621335
-                </th>
-                <td class="px-6 py-4">
-                    1155499325
-                </td>
-                <td class="px-6 py-4">
-                    11
-                </td>
-                <td class="px-6 py-4">
-                    <span class="bg-red-100 text-red-500 rounded-lg p-2">Blokir</span>
-                </td>
-                <td class="px-6 py-4">
-                    Admin1
-                </td>
-                <td class="px-6 py-4">
-                    2024-04-18 15:23:12
-                </td>
-                <td class="px-6 py-4">
-                    <a href="/detail-laporan" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
-                </td>
+            <tr *ngFor="let item of report_list" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <ng-container *ngIf="item.status > 2">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{item.reported_account_id}}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{item.account_number}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{item.reports_count}}
+                    </td>
+                    <td class="px-6 py-4">
+                        <span *ngIf="item.status == 3" class="bg-red-100 text-red-500 rounded-lg p-2">Saldo Dibekukan</span>
+                    </td>
+                    <td class="px-6 py-4">
+                        {{item.admin}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{item.time_finished}}
+                    </td>
+                    <td class="px-6 py-4">
+                        <a href="/detail-laporan" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
+                    </td>
+                </ng-container>
             </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    02551621335
-                </th>
-                <td class="px-6 py-4">
-                    1155499325
-                </td>
-                <td class="px-6 py-4">
-                    11
-                </td>
-                <td class="px-6 py-4">
-                    <span class="bg-red-100 text-red-500 rounded-lg p-2">Blokir</span>
-                </td>
-                <td class="px-6 py-4">
-                    Admin1
-                </td>
-                <td class="px-6 py-4">
-                    2024-04-18 15:23:12
-                </td>
-                <td class="px-6 py-4">
-                    <a href="/detail-laporan" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
-                </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    02551621335
-                </th>
-                <td class="px-6 py-4">
-                    1155499325
-                </td>
-                <td class="px-6 py-4">
-                    11
-                </td>
-                <td class="px-6 py-4">
-                    <span class="bg-green-100 text-green-500 rounded-lg p-2">Bebas Aduan</span>
-                </td>
-                <td class="px-6 py-4">
-                    Admin1
-                </td>
-                <td class="px-6 py-4">
-                    2024-04-18 15:23:12
-                </td>
-                <td class="px-6 py-4">
-                    <a href="/detail-laporan" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
-                </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    02551621335
-                </th>
-                <td class="px-6 py-4">
-                    1155499325
-                </td>
-                <td class="px-6 py-4">
-                    11
-                </td>
-                <td class="px-6 py-4">
-                    <span class="bg-red-100 text-red-500 rounded-lg p-2">Blokir</span>
-                </td>
-                <td class="px-6 py-4">
-                    Admin1
-                </td>
-                <td class="px-6 py-4">
-                    2024-04-18 15:23:12
-                </td>
-                <td class="px-6 py-4">
-                    <a href="/detail-laporan" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
-                </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    02551621335
-                </th>
-                <td class="px-6 py-4">
-                    1155499325
-                </td>
-                <td class="px-6 py-4">
-                    11
-                </td>
-                <td class="px-6 py-4">
-                    <span class="bg-green-100 text-green-500 rounded-lg p-2">Bebas Aduan</span>
-                </td>
-                <td class="px-6 py-4">
-                    Admin1
-                </td>
-                <td class="px-6 py-4">
-                    2024-04-18 15:23:12
-                </td>
-                <td class="px-6 py-4">
-                    <a href="/detail-laporan" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
-                </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    02551621335
-                </th>
-                <td class="px-6 py-4">
-                    1155499325
-                </td>
-                <td class="px-6 py-4">
-                    11
-                </td>
-                <td class="px-6 py-4">
-                    <span class="bg-red-100 text-red-500 rounded-lg p-2">Blokir</span>
-                </td>
-                <td class="px-6 py-4">
-                    Admin1
-                </td>
-                <td class="px-6 py-4">
-                    2024-04-18 15:23:12
-                </td>
-                <td class="px-6 py-4">
-                    <a href="/detail-laporan" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
-                </td>
-            </tr>
-            
         </tbody>
     </table>
     <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">

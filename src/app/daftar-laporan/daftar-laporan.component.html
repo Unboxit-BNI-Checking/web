@@ -92,24 +92,27 @@
         </thead>
         <tbody>
             <tr *ngFor="let item of report_list" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {{item.reported_account_id}}
-                </th>
-                <td class="px-6 py-4">
-                    {{item.account_number}}
-                </td>
-                <td class="px-6 py-4">
-                    {{item.reports_count}}
-                </td>
-                <td class="px-6 py-4">
-                    <span class="bg-yellow-100 text-yellow-500 rounded-lg p-2">{{item.status}}</span>
-                </td>
-                <td class="px-6 py-4">
-                    {{item.admin}}
-                </td>
-                <td class="px-6 py-4">
-                    <a [routerLink]="'/detail-laporan/' + item.reported_account_id" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
-                </td>
+                <ng-container *ngIf="item.status < 3">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{item.reported_account_id}}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{item.account_number}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{item.reports_count}}
+                    </td>
+                    <td class="px-6 py-4">
+                        <span *ngIf="item.status == 1" class="bg-green-100 text-green-500 rounded-lg p-2">Dilaporkan</span>
+                        <span *ngIf="item.status == 2" class="bg-yellow-100 text-yellow-500 rounded-lg p-2">Investigate</span>
+                    </td>
+                    <td class="px-6 py-4">
+                        {{item.admin}}
+                    </td>
+                    <td class="px-6 py-4">
+                        <a [routerLink]="'/detail-laporan/' + item.reported_account_id" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
+                    </td>
+                </ng-container>
             </tr>
         </tbody>
     </table>
