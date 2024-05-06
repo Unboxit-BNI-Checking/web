@@ -15,9 +15,9 @@ export const routes:  Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'daftar-laporan', component: DaftarLaporanComponent, canActivate: [AuthGuard] },
-  { path: 'detail-laporan-clear', component: DetailLaporanClearComponent, canActivate: [AuthGuard] },
-  { path: 'detail-laporan-investigasi', component: DetailLaporanInvestigasiComponent, canActivate: [AuthGuard] },
+  { path: 'detail-laporan-clear/:reported_account_id', component: DetailLaporanClearComponent, canActivate: [AuthGuard] },
+  { path: 'detail-laporan-investigasi/:reported_account_id', component: DetailLaporanInvestigasiComponent, canActivate: [AuthGuard] },
   { path: 'daftar-selesai', component: DaftarSelesaiComponent, canActivate: [AuthGuard] },
-  { path: 'detail-laporan/:id', component: DetailLaporanComponent, canActivate: [AuthGuard] },
+  { path: 'detail-laporan/:reported_account_id', component: DetailLaporanComponent, canActivate: [AuthGuard] },
   { path: 'tweets', component: TweetsComponent, canActivate: [AuthGuard] }
 ];

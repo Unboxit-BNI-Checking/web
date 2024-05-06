@@ -22,120 +22,130 @@
     <div class="flex flex-col items-start"> <!-- Adjusted -->
       <p class="text-black text-2xl font-semibold mb-2 ms-6">Detail Laporan</p>
     </div>
-  
-  <section class="bg-white dark:bg-gray-900">
-    <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
-      <div class="sm:col-span-1">
-        <div class="max-w-2xl px-4 py-8 lg:py-3">
-          <h2 class="mb-4 text-lg text-gray-900 dark:text-white">Rekening yang dilaporkan: 1234567890</h2>
-          <h2 class="mb-4 text-lg text-gray-900 dark:text-white">Nama pemilik rekening: Jeon Wonwoo</h2>
-          <form action="#">
-            <div class="grid gap-4 mb-4 sm:grid-cols-3 sm:gap-6 sm:mb-5">
-              <div class="sm:col-span-2">
-                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID Laporan</label>
-                <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder="Masukkan ID pelapor" required="">
-              </div>
-              <div class="sm:col-span-1">
-                <label for="Tanggal Laporan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Laporan</label>
-                <input type="date" name="tanggalLaporan" id="tanggalLaporan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder="$299" required="">
-              </div>
-              <div class="sm:col-span-2">
-                  <label for="namaPelapor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Pelapor</label>
-                  <input type="text" name="rekeningPelapor" id="rekeningPelapor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder="Masukkan nama pelapor" required="">
-              </div>
-              <div class="sm:col-span-1">
-                  <label for="rekeningPelapor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rekening Pelapor</label>
-                  <input type="text" name="rekeningPelapor" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder="Type ID" required="">
-              </div>
-              <div class="sm:col-span-1">
-                <label for="Tanggal Transaksi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Transaksi</label>
-                <input type="date" name="tanggalTransaksi" id="tanggalTransaksi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder="" required="">
-              </div>
-              <div class="sm:col-span-1">
-                  <label for="Kerugian Transaksi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kerugian Transaksi</label>
-                  <input type="number" name="kerugianTransaksi" id="kerugianTransaksi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder="Total Kerugian" required="">
-              </div> 
-              <div class="sm:col-span-1">
-                  <label for="Keterangan Transaksi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan</label>
-                  <input type="text" name="kerugianTransaksi" id="kerugianTransaksi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder="Keterangan" required="">
-              </div>
-              <div class="sm:col-span-3">
-                  <label for="kronologi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kronologi</label>
-                  <textarea id="kronologi" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Ceritakan kronologinya"></textarea>
-              </div>
+    <section class="bg-white dark:bg-gray-900">
+      <ng-container *ngIf="reportList.length > 0">
+        <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
+          <div class="sm:col-span-1">
+            <div class="max-w-2xl px-4 py-8 lg:py-3">
+              <h6 class="mb-4 text-sm text-gray-900 dark:text-white">Rekening Yang Dilaporkan: <strong>{{getCurrentReport().account_number_reported}}</strong></h6>
+              <h6 class="mb-4 text-sm text-gray-900 dark:text-white">Nama Pemilik Rekening: <strong>{{getCurrentReport().account_username_reported}}</strong></h6>
+              <h6 class="mb-4 text-sm text-gray-900 dark:text-white">Nama Bank: <strong>Bank Negara Indonesia</strong></h6>
+              <h6 class="mb-4 text-sm text-gray-900 dark:text-white">Status Laporan: 
+                <span *ngIf="getCurrentReport().status === 1" class="bg-gray-100 text-gray-500 rounded-lg p-2">Dilaporkan</span>
+              </h6>
+              <form action="#">
+                <div class="grid gap-4 mb-4 sm:grid-cols-3 sm:gap-6 sm:mb-5">
+                  <div class="sm:col-span-2">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID Laporan</label>
+                    <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder={{getCurrentReport().reported_id}} readonly>
+                  </div>
+                  <div class="sm:col-span-1">
+                    <label for="Tanggal Laporan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Laporan</label>
+                    <input type="date" name="tanggalLaporan" id="tanggalLaporan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder="" required="" readonly>
+                  </div>
+                  <div class="sm:col-span-2">
+                      <label for="namaPelapor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Pelapor</label>
+                      <input type="text" name="rekeningPelapor" id="rekeningPelapor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder={{getCurrentReport().account_username}} required="" readonly>
+                  </div>
+                  <div class="sm:col-span-1">
+                      <label for="rekeningPelapor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rekening Pelapor</label>
+                      <input type="text" name="rekeningPelapor" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder={{getCurrentReport().account_number}} required="" readonly>
+                  </div>
+                  <div class="sm:col-span-1">
+                    <label for="Tanggal Transaksi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Transaksi</label>
+                    <input type="date" name="tanggalTransaksi" id="tanggalTransaksi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder="" required="" readonly>
+                  </div>
+                  <div class="sm:col-span-1">
+                      <label for="Kerugian Transaksi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kerugian Transaksi</label>
+                      <input type="number" name="kerugianTransaksi" id="kerugianTransaksi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder={{getCurrentReport().amount}} required="" readonly>
+                  </div> 
+                  <div class="sm:col-span-1">
+                      <label for="Keterangan Transaksi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan</label>
+                      <input type="text" name="kerugianTransaksi" id="kerugianTransaksi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder={{getCurrentReport().transaction_note}} required="" readonly>
+                  </div>
+                  <div class="sm:col-span-3">
+                      <label for="kronologi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kronologi</label>
+                      <textarea id="kronologi" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder={{getCurrentReport().chronology}} readonly></textarea>
+                  </div>
+                </div>
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Attachment</label>
+                  <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                  <div class="mt-4 flex items-center justify-between">
+                    <label class="block text-sm font-medium">Showing <strong>{{getCurrentIndex() + 1}}</strong> of <strong>{{reportList.length}}</strong></label>
+                    <div class="flex items-center justify-center">
+                      <button type="button" class="text-orange-500 bg-orange-200 hover:bg-orange-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-orange-500 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center mr-2" (click)="previousReport()">Previous</button>
+                      <button type="button" class="text-orange-500 bg-orange-200 hover:bg-orange-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-orange-500 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center" (click)="nextReport()">Next</button>  
+                    </div>
+                  </div>
+                  <div class="mt-10 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">
+                    <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button" class="text-white-500 bg-yellow-200 hover:bg-yellow-300 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-yellow-500 font-medium rounded-full text-sm inline-flex items-center justify-center px-5 py-2.5 text-center" style="width: 48%;">Investigasi</button>
+                      <div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div class="relative p-4 w-full max-w-md max-h-full">
+                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
+                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                    </svg>
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                                <div class="p-4 md:p-5 text-center">
+                                    <svg class="mx-auto mb-4 text-orange-500 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                    </svg>
+                                    <h3 class="mb-5 text-lg font-normal text-black dark:text-gray-400">Ubah status ke Investigasi</h3>
+                                    <h3 class="mb-5 text-sm font-normal text-gray-500 dark:text-gray-400">Apakah Anda yakin akan mengubah status ini?</h3>
+                                    <button data-modal-hide="popup-modal" type="button" class="text-orange-500 bg-orange-200 hover:bg-orange-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-orange-500 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center">
+                                        Batal
+                                    </button>
+                                    <button data-modal-hide="popup-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-orange-500 focus:outline-none bg-orange-200 rounded-full border border-gray-200 hover:bg-orange-500 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Ubah</button>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    <button data-modal-target="popup-modal2" data-modal-toggle="popup-modal2" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-blue-500 focus:outline-none bg-blue-200 rounded-full border border-gray-200 hover:bg-blue-500 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" style="width: 48%;">Bebas Aduan</button>
+                      <div id="popup-modal2" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div class="relative p-4 w-full max-w-md max-h-full">
+                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal2">
+                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                    </svg>
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                                <div class="p-4 md:p-5 text-center">
+                                    <svg class="mx-auto mb-4 text-orange-500 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                    </svg>
+                                    <h3 class="mb-5 text-lg font-normal text-black dark:text-gray-400">Ubah status ke Bebas Aduan</h3>
+                                    <h3 class="mb-5 text-sm font-normal text-gray-500 dark:text-gray-400">Apakah Anda yakin akan mengubah status ini?</h3>
+                                    <button data-modal-hide="popup-modal" type="button" class="text-orange-500 bg-orange-200 hover:bg-orange-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-orange-500 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center">
+                                        Batal
+                                    </button>
+                                    <button data-modal-hide="popup-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-orange-500 focus:outline-none bg-orange-200 rounded-full border border-gray-200 hover:bg-orange-500 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Ubah</button>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+              </form>
             </div>
-              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Attachment</label>
-              <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
-              <div class="mt-4 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">
-                <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button" class="text-orange-500 bg-orange-200 hover:bg-orange-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-orange-500 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center">Investigasi</button>
-                  <div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="relative p-4 w-full max-w-md max-h-full">
-                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                            <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
-                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                                </svg>
-                                <span class="sr-only">Close modal</span>
-                            </button>
-                            <div class="p-4 md:p-5 text-center">
-                                <svg class="mx-auto mb-4 text-orange-500 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                                </svg>
-                                <h3 class="mb-5 text-lg font-normal text-black dark:text-gray-400">Ubah status ke Investigasi</h3>
-                                <h3 class="mb-5 text-sm font-normal text-gray-500 dark:text-gray-400">Apakah Anda yakin akan mengubah status ini?</h3>
-                                <button data-modal-hide="popup-modal" type="button" class="text-orange-500 bg-orange-200 hover:bg-orange-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-orange-500 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center">
-                                    Batal
-                                </button>
-                                <button data-modal-hide="popup-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-orange-500 focus:outline-none bg-orange-200 rounded-full border border-gray-200 hover:bg-orange-500 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Ubah</button>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-                <button data-modal-target="popup-modal2" data-modal-toggle="popup-modal2" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-green-500 focus:outline-none bg-green-200 rounded-full border border-gray-200 hover:bg-green-500 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Bebas Aduan</button>
-                  <div id="popup-modal2" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="relative p-4 w-full max-w-md max-h-full">
-                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                            <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal2">
-                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                                </svg>
-                                <span class="sr-only">Close modal</span>
-                            </button>
-                            <div class="p-4 md:p-5 text-center">
-                                <svg class="mx-auto mb-4 text-orange-500 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                                </svg>
-                                <h3 class="mb-5 text-lg font-normal text-black dark:text-gray-400">Ubah status ke Bebas Aduan</h3>
-                                <h3 class="mb-5 text-sm font-normal text-gray-500 dark:text-gray-400">Apakah Anda yakin akan mengubah status ini?</h3>
-                                <button data-modal-hide="popup-modal" type="button" class="text-orange-500 bg-orange-200 hover:bg-orange-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-orange-500 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center">
-                                    Batal
-                                </button>
-                                <button data-modal-hide="popup-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-orange-500 focus:outline-none bg-orange-200 rounded-full border border-gray-200 hover:bg-orange-500 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Ubah</button>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-              </div>
-          </form>
+          </div>
+          <div class="sm:col-span-1">
+            <div class="w-48 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+              <button type="button" class="relative inline-flex items-center w-full px-4 py-4 text-sm font-medium border-b text-black border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white" (click)="previousReport()">
+                <img src="../assets/logo_x.png" class="w-5 h-5 me-2.5" alt="X">
+                {{getCurrentReport().twitter_reports_count}} Laporan Terkait
+              </button>
+              <button type="button" class="relative inline-flex items-center w-full px-4 py-4 text-sm font-medium border-b text-gray-500 border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white" disabled>
+                <img src="../assets/logo_instagram.png" class="w-5 h-5 me-2.5" alt="X">
+                Coming Soon
+              </button>
+              <button type="button" class="relative inline-flex items-center w-full px-4 py-4 text-sm font-medium border-b text-gray-500 border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white" disabled>
+                <img src="../assets/logo_facebook.png" class="w-5 h-5 me-2.5" alt="X">
+                Coming Soon
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="sm:col-span-1">
-        <div class="w-48 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-          <button type="button" class="relative inline-flex items-center w-full px-4 py-4 text-sm font-medium border-b text-black border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
-              <img src="../assets/logo_x.png" class="w-5 h-5 me-2.5" alt="X">
-              Laporan Terkait
-          </button>
-          <button type="button" class="relative inline-flex items-center w-full px-4 py-4 text-sm font-medium border-b text-gray-500 border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white" disabled>
-            <img src="../assets/logo_instagram.png" class="w-5 h-5 me-2.5" alt="X">
-            Coming Soon
-          </button>
-          <button type="button" class="relative inline-flex items-center w-full px-4 py-4 text-sm font-medium border-b text-gray-500 border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white" disabled>
-            <img src="../assets/logo_facebook.png" class="w-5 h-5 me-2.5" alt="X">
-            Coming Soon
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  
+      </ng-container>
+    </section>
