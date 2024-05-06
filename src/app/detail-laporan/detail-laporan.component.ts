@@ -16,7 +16,7 @@ interface Report {
   transaction_note: String;
   amount: number;
   chronology: string;
-  attachment: string;
+  attachment: string[];
   twitter_reports_count: number;
 }
 
@@ -25,7 +25,7 @@ interface Report {
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './detail-laporan.component.html',
-  styleUrls: ['./detail-laporan.component.css']
+  styleUrl: './detail-laporan.component.css'
 })
 export class DetailLaporanComponent implements OnInit {
   reportedAccountId: number = 0;
@@ -52,7 +52,16 @@ export class DetailLaporanComponent implements OnInit {
       const response = await axios.get('/api/reportedAcc/website/reports/' + this.reportedAccountId, {
         headers: { "Authorization": "Bearer " + token }
       });
-      this.reportList = response.data.data;
+      // this.reportList = response.data.data;
+      this.reportList = response.data.data.map((report: Report) => {
+        if (typeof report.attachment === 'string') {
+          // Jika attachment adalah string tunggal, kita akan buat array dengan satu elemen
+          return { ...report, attachment: [report.attachment] };
+        } else {
+          return report; // Jika attachment sudah array, kita biarkan seperti itu
+        }
+      });
+      console.log(this.reportList)
       // Ubah format tanggal menggunakan DatePipe
       this.reportList.forEach(report => {
         // Periksa apakah nilai tanggal tidak null
@@ -85,5 +94,11 @@ export class DetailLaporanComponent implements OnInit {
 
   getCurrentIndex(){
     return this.currentIndex;
+  }
+  formatDate(date: Date): string {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`;
   }
 }

@@ -37,39 +37,42 @@
                 <div class="grid gap-4 mb-4 sm:grid-cols-3 sm:gap-6 sm:mb-5">
                   <div class="sm:col-span-2">
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID Laporan</label>
-                    <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder={{getCurrentReport().reported_id}} readonly>
+                    <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={{getCurrentReport().reported_id}} placeholder="" readonly>
                   </div>
                   <div class="sm:col-span-1">
                     <label for="Tanggal Laporan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Laporan</label>
-                    <input type="date" name="tanggalLaporan" id="tanggalLaporan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder="" required="" readonly>
+                    <input type="text" name="tanggalLaporan" id="tanggalLaporan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" [value]="formatDate(getCurrentReport().reports_created_at)" placeholder="" required="" readonly>
+
                   </div>
                   <div class="sm:col-span-2">
                       <label for="namaPelapor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Pelapor</label>
-                      <input type="text" name="rekeningPelapor" id="rekeningPelapor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder={{getCurrentReport().account_username}} required="" readonly>
+                      <input type="text" name="rekeningPelapor" id="rekeningPelapor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={{getCurrentReport().account_username}} placeholder="" required="" readonly>
                   </div>
                   <div class="sm:col-span-1">
                       <label for="rekeningPelapor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rekening Pelapor</label>
-                      <input type="text" name="rekeningPelapor" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder={{getCurrentReport().account_number}} required="" readonly>
+                      <input type="text" name="rekeningPelapor" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={{getCurrentReport().account_number}} placeholder="" required="" readonly>
                   </div>
                   <div class="sm:col-span-1">
                     <label for="Tanggal Transaksi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Transaksi</label>
-                    <input type="date" name="tanggalTransaksi" id="tanggalTransaksi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder="" required="" readonly>
+                    <input type="text" name="tanggalTransaksi" id="tanggalTransaksi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" [value]="formatDate(getCurrentReport().transaction_created_at)" placeholder="" required="" readonly>
                   </div>
                   <div class="sm:col-span-1">
                       <label for="Kerugian Transaksi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kerugian Transaksi</label>
-                      <input type="number" name="kerugianTransaksi" id="kerugianTransaksi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder={{getCurrentReport().amount}} required="" readonly>
+                      <input type="number" name="kerugianTransaksi" id="kerugianTransaksi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={{getCurrentReport().amount}} placeholder="" required="" readonly>
                   </div> 
                   <div class="sm:col-span-1">
                       <label for="Keterangan Transaksi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan</label>
-                      <input type="text" name="kerugianTransaksi" id="kerugianTransaksi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="" placeholder={{getCurrentReport().transaction_note}} required="" readonly>
+                      <input type="text" name="kerugianTransaksi" id="kerugianTransaksi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={{getCurrentReport().transaction_note}} placeholder="" required="" readonly>
                   </div>
                   <div class="sm:col-span-3">
                       <label for="kronologi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kronologi</label>
-                      <textarea id="kronologi" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder={{getCurrentReport().chronology}} readonly></textarea>
+                      <textarea id="kronologi" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value= {{getCurrentReport().chronology}} placeholder="" readonly></textarea>
                   </div>
                 </div>
                   <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Attachment</label>
-                  <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                  <div *ngFor="let attachment of getCurrentReport().attachment">
+                    <img [src]="attachment" class="w-full mb-4" *ngIf="attachment" style="max-width: 100px; max-height: 100px; width: auto; height: auto;">
+                  </div>
                   <div class="mt-4 flex items-center justify-between">
                     <label class="block text-sm font-medium">Showing <strong>{{getCurrentIndex() + 1}}</strong> of <strong>{{reportList.length}}</strong></label>
                     <div class="flex items-center justify-center">
@@ -134,15 +137,7 @@
             <div class="w-48 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
               <button type="button" class="relative inline-flex items-center w-full px-4 py-4 text-sm font-medium border-b text-black border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white" (click)="previousReport()">
                 <img src="../assets/logo_x.png" class="w-5 h-5 me-2.5" alt="X">
-                {{getCurrentReport().twitter_reports_count}} Laporan Terkait
-              </button>
-              <button type="button" class="relative inline-flex items-center w-full px-4 py-4 text-sm font-medium border-b text-gray-500 border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white" disabled>
-                <img src="../assets/logo_instagram.png" class="w-5 h-5 me-2.5" alt="X">
-                Coming Soon
-              </button>
-              <button type="button" class="relative inline-flex items-center w-full px-4 py-4 text-sm font-medium border-b text-gray-500 border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white" disabled>
-                <img src="../assets/logo_facebook.png" class="w-5 h-5 me-2.5" alt="X">
-                Coming Soon
+                {{getCurrentReport().twitter_reports_count}} Laporan Terkait 
               </button>
             </div>
           </div>
