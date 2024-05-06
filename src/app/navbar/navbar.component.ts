@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [
+    RouterLink
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'

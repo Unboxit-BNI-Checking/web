@@ -41,8 +41,8 @@ export class LoginComponent {
     }
     axios.post('/api/admins/login', data).then(response => {
     this.authService.setToken(response.data.data.token);
+    alert("Berhasil login");
     this.router.navigate(['/dashboard']);
-
     })
   }
 }
