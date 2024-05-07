@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-=======
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, Injector, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import axios from 'axios';
 import { AuthService } from '../auth.service';
-import { CommonModule, DatePipe } from '@angular/common';
 
 interface Report {
   account_number_reported: string;
@@ -23,16 +19,11 @@ interface Report {
   attachment: string[];
   twitter_reports_count: number;
 }
->>>>>>> 30c2f4b1e578187274e693fd51b087a4b98c7277
 
 @Component({
   selector: 'app-detail-laporan',
   standalone: true,
-<<<<<<< HEAD
-  imports: [RouterLink],
-=======
   imports: [CommonModule, RouterLink],
->>>>>>> 30c2f4b1e578187274e693fd51b087a4b98c7277
   templateUrl: './detail-laporan.component.html',
   styleUrl: './detail-laporan.component.css'
 })
