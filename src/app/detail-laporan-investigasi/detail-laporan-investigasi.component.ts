@@ -1,5 +1,5 @@
-import { Component, Injector, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Component, Injector } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import axios from 'axios';
 import { AuthService } from '../auth.service';
 import { CommonModule, DatePipe } from '@angular/common';
@@ -33,7 +33,7 @@ export class DetailLaporanInvestigasiComponent {
   datePipe: DatePipe;
   currentIndex: number = 0;
 
-  constructor(private authService: AuthService, private route: ActivatedRoute, private injector: Injector) {
+  constructor(private authService: AuthService, private route: ActivatedRoute, private injector: Injector, private router: Router) {
     this.datePipe = this.injector.get(DatePipe);
   }
 
@@ -86,6 +86,22 @@ export class DetailLaporanInvestigasiComponent {
     if (this.currentIndex > 0) {
       this.currentIndex--;
     }
+  }
+
+  blokir(){
+    // alert("Yakin?");
+    const body = {"status": 3}
+    axios.patch('/api/reportedAcc/reports/'+ this.reportedAccountId +'/status', body, {headers: { "Authorization": "Bearer " + this.authService.getToken() }}).then(() => {
+      this.router.navigateByUrl("/daftar-selesai");
+    })
+  }
+
+  bebasAduan(){
+    // alert("Yakin?");
+    const body = {"status": 4}
+    axios.patch('/api/reportedAcc/reports/'+ this.reportedAccountId +'/status', body, {headers: { "Authorization": "Bearer " + this.authService.getToken() }}).then(() => {
+      this.router.navigateByUrl("/daftar-selesai");
+    })
   }
 
   getCurrentReport() {

@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { CommonModule, NgFor } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { AuthService } from '../auth.service';
 import { RouterLink } from '@angular/router';
@@ -21,14 +21,23 @@ interface report {
     standalone: true,
     templateUrl: './daftar-selesai.component.html',
     styleUrl: './daftar-selesai.component.css',
-    imports: [CommonModule, RouterLink, SearchPipe, FormsModule]
+    imports: [CommonModule, RouterLink, SearchPipe, FormsModule, NgFor]
 })
-export class DaftarSelesaiComponent {
+export class DaftarSelesaiComponent implements OnInit {
+
+  statusList: string[] = ["Blokir", "Bebas Aduan"];
+  selectedStatus: number = 0;
+
   constructor(private authService: AuthService) {
+    this.getReport();
+  }
+  ngOnInit(): void {
     this.getReport();
   }
 
   report_list: report[] = [];
+  filtered_report: report[] = [];
+  searchText = '';
 
   async getReport(){
     try{
@@ -53,10 +62,19 @@ export class DaftarSelesaiComponent {
           return null; // atau nilai default lainnya
         }
       }).filter((item: any) => item !== null); // Filter nilai yang null  
+      this.filtered_report = this.report_list;
     }catch (error) {
       console.log(error);
     }
   }
 
-  searchText = '';
+  filterData() {
+    this.filtered_report = this.report_list.filter(item => (this.selectedStatus == 0 || item.status == this.selectedStatus));
+    console.error(this.selectedStatus);
+  }
+
+  onChangeStatus() {
+    this.filterData();
+    //console.error(this.report_list);
+  }
 }

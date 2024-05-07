@@ -1,4 +1,4 @@
-import { Component, Injector, OnInit } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import axios from 'axios';
 import { AuthService } from '../auth.service';

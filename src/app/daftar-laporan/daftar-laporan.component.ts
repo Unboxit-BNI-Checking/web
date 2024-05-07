@@ -1,4 +1,4 @@
-import { CommonModule, NgFor, NgForOf } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { AuthService } from '../auth.service';
