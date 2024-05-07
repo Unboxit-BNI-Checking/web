@@ -11,8 +11,10 @@ import { RouterLink } from '@angular/router';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
-constructor(private dashboardService: DashboardService) {
-}
+  constructor(private dashboardService: DashboardService) {
+    this.currentYear = new Date().getFullYear();
+  }
+  currentYear: number;
 
   total_laporan: number=0;
   total_investigate: number = 0;
@@ -20,12 +22,22 @@ constructor(private dashboardService: DashboardService) {
   avg_waktu_penanganan_laporan: number = 0;
   total_laporan_selesai: number = 0;
   total_laporan_belum_selesai: number = 0;
-  chartData: { x: string, y: number }[] = [];
+  chartDataAllMonth: { x: string, y: number }[] = [];
 
-  getMonthName(month: number): string {
-    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-    return monthNames[month - 1];
-  }
+  bulan = [
+    { id: 1, nama: 'Jan' },
+    { id: 2, nama: 'Feb' },
+    { id: 3, nama: 'Mar' },
+    { id: 4, nama: 'Apr' },
+    { id: 5, nama: 'May' },
+    { id: 6, nama: 'Jun' },
+    { id: 7, nama: 'Jul' },
+    { id: 8, nama: 'Aug' },
+    { id: 9, nama: 'Sep' },
+    { id: 10, nama: 'Oct' },
+    { id: 11, nama: 'Nov' },
+    { id: 12, nama: 'Dec' }
+  ];
 
   async ngOnInit(): Promise<void> {
     try {
@@ -38,22 +50,23 @@ constructor(private dashboardService: DashboardService) {
       this.total_laporan_belum_selesai = data.total_laporan_belum_selesai;
 
       const data2= await this.dashboardService.getLaporanSelesaiPerBulan();
-      this.chartData = data2.map((item) => ({
-        x: this.getMonthName(item.bulan),
-        y: item.jumlah
-      })
-      ).filter((item: any) => item !== null);
+      this.chartDataAllMonth = this.bulan.map(bulanItem => {
+        const dataItem = data2.find((item: { bulan: number; }) => item.bulan === bulanItem.id);
+        return {
+          x: bulanItem.nama,
+          y: dataItem ? dataItem.jumlah : 0
+        };});
     } catch (error) {
       console.error("Error:", error);
     }
 
-    const chartPerbulan = {
+    const chartPertahun = {
       colors: ["#1A56DB", "#FDBA8C"],
       series: [
         {
           name: "Laporan Selesai",
           color: "#F37548",
-          data: this.chartData
+          data: this.chartDataAllMonth
           ,
         },
       ],
@@ -133,12 +146,11 @@ constructor(private dashboardService: DashboardService) {
     }
     
     if (document.getElementById("column-chart") && typeof ApexCharts !== 'undefined') {
-      const chart = new ApexCharts(document.getElementById("column-chart"), chartPerbulan);
+      const chart = new ApexCharts(document.getElementById("column-chart"), chartPertahun);
       chart.render();
     }
     
-
-    const getChartOptions = () => {
+    const getChartCurrentMonths = () => {
       return {
         series: [this.total_laporan_selesai, this.total_laporan_belum_selesai],
         colors: ["#F37548", "#FEEEE9"],
@@ -211,7 +223,7 @@ constructor(private dashboardService: DashboardService) {
     }
 
     if (document.getElementById("donut-chart") && typeof ApexCharts !== 'undefined') {
-      const chart = new ApexCharts(document.getElementById("donut-chart"), getChartOptions());
+      const chart = new ApexCharts(document.getElementById("donut-chart"), getChartCurrentMonths());
       chart.render();
     }
 
