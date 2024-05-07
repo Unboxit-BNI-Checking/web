@@ -71,7 +71,7 @@
                 </div>
                   <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Attachment</label>
                   <div *ngFor="let attachment of getCurrentReport().attachment">
-                    <img [src]="attachment" class="w-full mb-4" *ngIf="attachment" style="max-width: 100px; max-height: 100px; width: auto; height: auto;">
+                    <a [href]="attachment" target="_blank"><img [src]="attachment" class="w-full mb-4" *ngIf="attachment" style="max-width: 100px; max-height: 100px; width: auto; height: auto;"></a>
                   </div>
                   <div class="mt-4 flex items-center justify-between">
                     <label class="block text-sm font-medium">Showing <strong>{{getCurrentIndex() + 1}}</strong> of <strong>{{reportList.length}}</strong></label>
