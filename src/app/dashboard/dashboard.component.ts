@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import ApexCharts from 'apexcharts';
-import { AuthService } from '../auth.service';
-
+import { DashboardService } from '../dashboard.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,117 +11,127 @@ import { AuthService } from '../auth.service';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
-constructor(private authService: AuthService) {}
+constructor(private dashboardService: DashboardService) {
+}
 
-  ngOnInit(): void {
-    console.log(this.authService.getToken());
+  total_laporan: number=0;
+  total_investigate: number = 0;
+  total_laporan_sosmed: number = 0;
+  avg_waktu_penanganan_laporan: number = 0;
+  total_laporan_selesai: number = 0;
+  total_laporan_belum_selesai: number = 0;
+  chartData: { x: string, y: number }[] = [];
 
+  getMonthName(month: number): string {
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+    return monthNames[month - 1];
+  }
 
-    const options = {
+  async ngOnInit(): Promise<void> {
+    try {
+      const data = await this.dashboardService.getDataDashboard();
+      this.total_laporan = data.total_laporan;
+      this.total_investigate = data.total_investigate;
+      this.total_laporan_sosmed = data.total_laporan_sosmed;
+      this.avg_waktu_penanganan_laporan = data.avg_waktu_penanganan_laporan;
+      this.total_laporan_selesai = data.total_laporan_selesai;
+      this.total_laporan_belum_selesai = data.total_laporan_belum_selesai;
+
+      const data2= await this.dashboardService.getLaporanSelesaiPerBulan();
+      this.chartData = data2.map((item) => ({
+        x: this.getMonthName(item.bulan),
+        y: item.jumlah
+      })
+      ).filter((item: any) => item !== null);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+
+    const chartPerbulan = {
       colors: ["#1A56DB", "#FDBA8C"],
       series: [
-      {
-        name: "Organic",
-        color: "#1A56DB",
-        data: [
-          { x: "Mon", y: 231 },
-          { x: "Tue", y: 122 },
-          { x: "Wed", y: 63 },
-          { x: "Thu", y: 421 },
-          { x: "Fri", y: 122 },
-          { x: "Sat", y: 323 },
-          { x: "Sun", y: 111 },
-        ],
-      },
-      {
-        name: "Social media",
-        color: "#FDBA8C",
-        data: [
-          { x: "Mon", y: 232 },
-          { x: "Tue", y: 113 },
-          { x: "Wed", y: 341 },
-          { x: "Thu", y: 224 },
-          { x: "Fri", y: 522 },
-          { x: "Sat", y: 411 },
-          { x: "Sun", y: 243 },
-        ],
-      },
-    ],
-    chart: {
-      type: "bar",
-      height: "320px",
-      fontFamily: "Inter, sans-serif",
-      toolbar: {
-        show: false,
-      },
-    },
-    plotOptions: {
-      bar: {
-        horizontal: false,
-        columnWidth: "70%",
-        borderRadiusApplication: "end",
-        borderRadius: 8,
-      },
-    },
-    tooltip: {
-      shared: true,
-      intersect: false,
-      style: {
+        {
+          name: "Laporan Selesai",
+          color: "#F37548",
+          data: this.chartData
+          ,
+        },
+      ],
+      chart: {
+        type: "bar",
+        height: "320px",
         fontFamily: "Inter, sans-serif",
-      },
-    },
-    states: {
-      hover: {
-        filter: {
-          type: "darken",
-          value: 1,
+        toolbar: {
+          show: false,
         },
       },
-    },
-    stroke: {
-      show: true,
-      width: 0,
-      colors: ["transparent"],
-    },
-    grid: {
-      show: false,
-      strokeDashArray: 4,
-      padding: {
-        left: 2,
-        right: 2,
-        top: -14
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "70%",
+          borderRadiusApplication: "end",
+          borderRadius: 8,
+        },
       },
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    legend: {
-      show: false,
-    },
-    xaxis: {
-      floating: false,
-      labels: {
-        show: true,
+      tooltip: {
+        shared: true,
+        intersect: false,
         style: {
           fontFamily: "Inter, sans-serif",
-          cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
-        }
+        },
       },
-      axisBorder: {
+      states: {
+        hover: {
+          filter: {
+            type: "darken",
+            value: 1,
+          },
+        },
+      },
+      stroke: {
+        show: true,
+        width: 0,
+        colors: ["transparent"],
+      },
+      grid: {
+        show: false,
+        strokeDashArray: 4,
+        padding: {
+          left: 2,
+          right: 2,
+          top: -14
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      legend: {
         show: false,
       },
-      axisTicks: {
+      xaxis: {
+        floating: false,
+        labels: {
+          show: true,
+          style: {
+            fontFamily: "Inter, sans-serif",
+            cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
+          }
+        },
+        axisBorder: {
+          show: false,
+        },
+        axisTicks: {
+          show: false,
+        },
+      },
+      yaxis: {
         show: false,
       },
-    },
-    yaxis: {
-      show: false,
-    },
-    fill: {
-      opacity: 1,
-    },
-    };
-
+      fill: {
+        opacity: 1,
+      },
+    }
+    
     if (document.getElementById("column-chart") && typeof ApexCharts !== 'undefined') {
       const chart = new ApexCharts(document.getElementById("column-chart"), chartPerbulan);
       chart.render();
@@ -204,5 +214,6 @@ constructor(private authService: AuthService) {}
       const chart = new ApexCharts(document.getElementById("donut-chart"), getChartOptions());
       chart.render();
     }
+
   }
 }

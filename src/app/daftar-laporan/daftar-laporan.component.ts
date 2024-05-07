@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { AuthService } from '../auth.service';
 import { RouterLink } from '@angular/router';
+import { SearchPipe } from '../search.pipe';
+import { FormsModule } from '@angular/forms';
 
 
 interface report {
@@ -16,17 +18,21 @@ interface report {
 @Component({
   selector: 'app-daftar-laporan',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, SearchPipe, FormsModule],
   templateUrl: './daftar-laporan.component.html',
   styleUrl: './daftar-laporan.component.css'
 })
 
-export class DaftarLaporanComponent {
+export class DaftarLaporanComponent implements OnInit {
   constructor(private authService: AuthService) {
     this.getReport();
   }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   report_list: report[] = [];
+  searchText = '';
 
   async getReport(){
     try{
@@ -38,4 +44,5 @@ export class DaftarLaporanComponent {
       console.log(error);
     }
   }
+
 }

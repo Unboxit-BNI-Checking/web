@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import axios from 'axios';
 import { AuthService } from '../auth.service';
 import { RouterLink } from '@angular/router';
+import { SearchPipe } from "../search.pipe";
+import { FormsModule } from '@angular/forms';
 
 
 interface report {
@@ -15,11 +17,11 @@ interface report {
 }
 
 @Component({
-  selector: 'app-daftar-selesai',
-  standalone: true,
-  imports: [CommonModule, RouterLink],
-  templateUrl: './daftar-selesai.component.html',
-  styleUrl: './daftar-selesai.component.css'
+    selector: 'app-daftar-selesai',
+    standalone: true,
+    templateUrl: './daftar-selesai.component.html',
+    styleUrl: './daftar-selesai.component.css',
+    imports: [CommonModule, RouterLink, SearchPipe, FormsModule]
 })
 export class DaftarSelesaiComponent {
   constructor(private authService: AuthService) {
@@ -56,4 +58,5 @@ export class DaftarSelesaiComponent {
     }
   }
 
+  searchText = '';
 }

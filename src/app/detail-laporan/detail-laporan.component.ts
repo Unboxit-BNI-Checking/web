@@ -1,6 +1,6 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, Injector, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 import axios from 'axios';
 import { AuthService } from '../auth.service';
 
@@ -33,7 +33,7 @@ export class DetailLaporanComponent implements OnInit {
   datePipe: DatePipe;
   currentIndex: number = 0;
 
-  constructor(private authService: AuthService, private route: ActivatedRoute, private injector: Injector) {
+  constructor(private authService: AuthService, private route: ActivatedRoute, private injector: Injector, private router: Router) {
     this.datePipe = this.injector.get(DatePipe);
   }
 
@@ -86,6 +86,14 @@ export class DetailLaporanComponent implements OnInit {
     if (this.currentIndex > 0) {
       this.currentIndex--;
     }
+  }
+
+  investigate(){
+    // alert("Yakin?");
+    const body = {"status": 2}
+    axios.patch('/api/reportedAcc/reports/'+ this.reportedAccountId +'/status', body, {headers: { "Authorization": "Bearer " + this.authService.getToken() }}).then(() => {
+      this.router.navigateByUrl("/daftar-laporan");
+    })
   }
 
   getCurrentReport() {
