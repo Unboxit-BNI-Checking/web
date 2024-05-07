@@ -42,7 +42,7 @@ export class DaftarSelesaiComponent {
             status: item.status,
             admin: item.admin,
             // Konversi timestamp string ke objek Date
-            time_finished: new Date(item.time_finished)
+            time_finished: new Date(item.time_finished),
           };
         } catch (error) {
           console.error("Error converting timestamp:", error);
@@ -50,8 +50,7 @@ export class DaftarSelesaiComponent {
           // Jika terjadi kesalahan, kembalikan null atau nilai default 
           return null; // atau nilai default lainnya
         }
-      }).filter((item: any) => item !== null); // Filter nilai yang null
-  
+      }).filter((item: any) => item !== null); // Filter nilai yang null  
     }catch (error) {
       console.log(error);
     }

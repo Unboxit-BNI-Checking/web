@@ -103,14 +103,15 @@
                         {{item.reports_count}}
                     </td>
                     <td class="px-6 py-4">
-                        <span *ngIf="item.status == 1" class="bg-green-100 text-green-500 rounded-lg p-2">Dilaporkan</span>
+                        <span *ngIf="item.status == 1" class="bg-gray-100 text-gray-500 rounded-lg p-2">Dilaporkan</span>
                         <span *ngIf="item.status == 2" class="bg-yellow-100 text-yellow-500 rounded-lg p-2">Investigate</span>
                     </td>
                     <td class="px-6 py-4">
                         {{item.admin}}
                     </td>
                     <td class="px-6 py-4">
-                        <a [routerLink]="'/detail-laporan/' + item.reported_account_id" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
+                        <a [routerLink]="'/detail-laporan/' + item.reported_account_id" *ngIf="item.status == 1" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
+                        <a [routerLink]="'/detail-laporan-investigasi/' + item.reported_account_id" *ngIf="item.status == 2" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
                     </td>
                 </ng-container>
             </tr>

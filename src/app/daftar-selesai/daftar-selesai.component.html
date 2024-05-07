@@ -106,16 +106,18 @@
                         {{item.reports_count}}
                     </td>
                     <td class="px-6 py-4">
-                        <span *ngIf="item.status == 3" class="bg-red-100 text-red-500 rounded-lg p-2">Saldo Dibekukan</span>
+                        <span *ngIf="item.status == 3" class="bg-red-100 text-red-500 rounded-lg p-2">Saldo Terblokir</span>
+                        <span *ngIf="item.status == 4" class="bg-blue-100 text-blue-500 rounded-lg p-2">Ditolak</span>
+                        <span *ngIf="item.status == 5" class="bg-green-100 text-green-500 rounded-lg p-2">Bebas Aduan</span>
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4">  
                         {{item.admin}}
                     </td>
                     <td class="px-6 py-4">
                         {{item.time_finished}}
                     </td>
                     <td class="px-6 py-4">
-                        <a href="/detail-laporan" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
+                        <a [routerLink]="'/detail-laporan-clear/' + item.reported_account_id" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
                     </td>
                 </ng-container>
             </tr>
