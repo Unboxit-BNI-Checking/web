@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import ApexCharts from 'apexcharts';
 import { AuthService } from '../auth.service';
-import { RouterLink } from '@angular/router';
 
 
 @Component({
@@ -17,61 +16,34 @@ constructor(private authService: AuthService) {}
   ngOnInit(): void {
     console.log(this.authService.getToken());
 
+
     const options = {
       colors: ["#1A56DB", "#FDBA8C"],
       series: [
       {
-        name: "Admin 1",
-        color: "#FEEEE9",
+        name: "Organic",
+        color: "#1A56DB",
         data: [
-          { x: "Jan", y: 232 },
-          { x: "Feb", y: 113 },
-          { x: "Mar", y: 341 },
-          { x: "Apr", y: 224 },
-          { x: "May", y: 522 },
-          { x: "Jun", y: 411 },
-          { x: "Jul", y: 243 },
-          { x: "Aug", y: 243 },
-          { x: "Sep", y: 243 },
-          { x: "Oct", y: 243 },
-          { x: "Nov", y: 243 },
-          { x: "Dec", y: 243 },
+          { x: "Mon", y: 231 },
+          { x: "Tue", y: 122 },
+          { x: "Wed", y: 63 },
+          { x: "Thu", y: 421 },
+          { x: "Fri", y: 122 },
+          { x: "Sat", y: 323 },
+          { x: "Sun", y: 111 },
         ],
       },
       {
-        name: "Admin 2",
-        color: "#F9BBA4",
+        name: "Social media",
+        color: "#FDBA8C",
         data: [
-          { x: "Jan", y: 232 },
-          { x: "Feb", y: 113 },
-          { x: "Mar", y: 341 },
-          { x: "Apr", y: 224 },
-          { x: "May", y: 522 },
-          { x: "Jun", y: 411 },
-          { x: "Jul", y: 243 },
-          { x: "Aug", y: 243 },
-          { x: "Sep", y: 243 },
-          { x: "Oct", y: 243 },
-          { x: "Nov", y: 243 },
-          { x: "Dec", y: 243 },
-        ],
-      },
-      {
-        name: "Admin 3",
-        color: "#F37548",
-        data: [
-          { x: "Jan", y: 232 },
-          { x: "Feb", y: 113 },
-          { x: "Mar", y: 341 },
-          { x: "Apr", y: 224 },
-          { x: "May", y: 522 },
-          { x: "Jun", y: 411 },
-          { x: "Jul", y: 243 },
-          { x: "Aug", y: 243 },
-          { x: "Sep", y: 243 },
-          { x: "Oct", y: 243 },
-          { x: "Nov", y: 243 },
-          { x: "Dec", y: 243 },
+          { x: "Mon", y: 232 },
+          { x: "Tue", y: 113 },
+          { x: "Wed", y: 341 },
+          { x: "Thu", y: 224 },
+          { x: "Fri", y: 522 },
+          { x: "Sat", y: 411 },
+          { x: "Sun", y: 243 },
         ],
       },
     ],
@@ -86,7 +58,7 @@ constructor(private authService: AuthService) {}
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: "100%",
+        columnWidth: "70%",
         borderRadiusApplication: "end",
         borderRadius: 8,
       },
@@ -150,10 +122,16 @@ constructor(private authService: AuthService) {}
     },
     };
 
+    if (document.getElementById("column-chart") && typeof ApexCharts !== 'undefined') {
+      const chart = new ApexCharts(document.getElementById("column-chart"), chartPerbulan);
+      chart.render();
+    }
+    
+
     const getChartOptions = () => {
       return {
-        series: [35.1, 23.5],
-        colors: ["#FEEEE9", "#F37548"],
+        series: [this.total_laporan_selesai, this.total_laporan_belum_selesai],
+        colors: ["#F37548", "#FEEEE9"],
         chart: {
           height: 320,
           width: "100%",
@@ -171,30 +149,18 @@ constructor(private authService: AuthService) {}
                 name: {
                   show: true,
                   fontFamily: "Inter, sans-serif",
-                  offsetY: 20,
-                },
-                total: {
-                  showAlways: true,
-                  show: true,
-                  label: "Seluruh Laporan Masuk",
-                  fontFamily: "Inter, sans-serif",
-                  formatter: function (w: { globals: { seriesTotals: any[]; }; }) {
-                    const sum = w.globals.seriesTotals.reduce((a: any, b: any) => {
-                      return a + b
-                    }, 0)
-                    return '$' + sum + 'k'
-                  },
+                  offsetY: 18,
                 },
                 value: {
                   show: true,
                   fontFamily: "Inter, sans-serif",
-                  offsetY: -20,
+                  offsetY: -18,
                   formatter: function (value: string) {
-                    return value + "k"
+                    return value + " Laporan"
                   },
                 },
               },
-              size: "80%",
+              size: "70%",
             },
           },
         },
@@ -203,25 +169,25 @@ constructor(private authService: AuthService) {}
             top: -2,
           },
         },
-        labels: ["Belum Selesai", "Selesai"],
+        labels: ["Selesai", "Belum Selesai"],
         dataLabels: {
           enabled: false,
         },
         legend: {
-          position: "bottom",
+          position:"right",
           fontFamily: "Inter, sans-serif",
         },
         yaxis: {
           labels: {
             formatter: function (value: string) {
-              return value + "k"
+              return value + "Laporan"
             },
           },
         },
         xaxis: {
           labels: {
             formatter: function (value: string) {
-              return value  + "k"
+              return value + "Laporan"
             },
           },
           axisTicks: {
@@ -234,17 +200,9 @@ constructor(private authService: AuthService) {}
       }
     }
 
-    if (document.getElementById("column-chart") && typeof ApexCharts !== 'undefined') {
-      const chart = new ApexCharts(document.getElementById("column-chart"), options);
-      chart.render();
-    }
-
     if (document.getElementById("donut-chart") && typeof ApexCharts !== 'undefined') {
       const chart = new ApexCharts(document.getElementById("donut-chart"), getChartOptions());
       chart.render();
-    
-      // Get all the checkboxes by their class name
-      const checkboxes = document.querySelectorAll('#devices input[type="checkbox"]');
+    }
   }
-}
 }
