@@ -1,16 +1,19 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import axios from 'axios';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    ReactiveFormsModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -19,6 +22,7 @@ export class LoginComponent {
   // loginObj: Login;
   username: string = '';
   password: string = '';
+  loginError: boolean = false;
   //authService: any;
 
 
@@ -27,6 +31,12 @@ export class LoginComponent {
   }
 
   onLogin() {
+
+    if (this.username.trim() === '' || this.password.trim() === '') {
+      // Jika ada field yang kosong, set loginError menjadi true
+      this.loginError = true;
+      return;
+    }
     // this.http.post('/api/admins/login', this.loginObj).subscribe((res:any)=>{
     //   if(res.result){
     //     alert("Login success")
@@ -43,6 +53,9 @@ export class LoginComponent {
     this.authService.setToken(response.data.data.token);
     alert("Berhasil login");
     this.router.navigate(['/dashboard']);
+    },
+    (error) => {
+      this.loginError = true;
     })
   }
 }
