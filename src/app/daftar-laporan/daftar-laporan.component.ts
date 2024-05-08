@@ -2,7 +2,7 @@ import { CommonModule, NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { AuthService } from '../auth.service';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SearchPipe } from '../search.pipe';
 import { FormsModule } from '@angular/forms';
 
@@ -28,16 +28,21 @@ export class DaftarLaporanComponent implements OnInit {
   statusList: string[] = ["Dilaporkan", "Investigate"];
   selectedStatus: number = 0;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private activatedRoute: ActivatedRoute) {
     
   }
+
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(param => {
+      if (param['filter'] == 'investigate') this.selectedStatus = 2;
+    });
     this.getReport();
   }
 
   report_list: report[] = [];
   filtered_report: report[] = [];
   searchText = '';
+  sortDirection: string = 'asc';
 
   async getReport(){
     try{
@@ -45,9 +50,13 @@ export class DaftarLaporanComponent implements OnInit {
       const response = await axios.get('/api/reportedAcc/website', {headers: {"Authorization": "Bearer " + token}});
       //console.log(response.data.data);
       this.report_list = response.data.data;
-      this.filtered_report = this.report_list;
+      if (this.selectedStatus != 0) {
+        this.filterData();
+      } else {
+        this.filtered_report = this.report_list;
+      }
 
-    }catch (error) {
+    } catch (error) {
       console.log(error);
     }
   }
@@ -60,5 +69,13 @@ export class DaftarLaporanComponent implements OnInit {
   onChangeStatus() {
     this.filterData();
     //console.error(this.report_list);
+  }
+  sortDataByReportCounts() {
+    this.filtered_report.sort((a, b) => {
+      const aValue = a.reports_count;
+      const bValue = b.reports_count;
+      return this.sortDirection === 'asc' ? aValue - bValue : bValue - aValue;
+    }); console.log('works');
+    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
   }
 }

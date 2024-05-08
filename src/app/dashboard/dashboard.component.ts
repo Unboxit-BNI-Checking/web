@@ -1,7 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import ApexCharts from 'apexcharts';
 import { DashboardService } from '../dashboard.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+
+interface report {
+  reported_account_id: number;
+  account_number: string;
+  reports_count: number;
+  status: number;
+  admin: string
+}
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +19,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
-  constructor(private dashboardService: DashboardService) {
+  constructor(private dashboardService: DashboardService, private router: Router) {
     this.currentYear = new Date().getFullYear();
   }
   currentYear: number;
@@ -228,4 +236,22 @@ export class DashboardComponent implements OnInit {
     }
 
   }
+
+  statusList: string[] = ["Dilaporkan", "Investigate"];
+  selectedStatus: number = 0;
+
+  report_list: report[] = [];
+  filtered_report: report[] = [];
+  searchText = '';
+
+  filterData() {
+    this.filtered_report = this.report_list.filter(item => (this.selectedStatus == 2));
+    console.error(this.selectedStatus);
+  }
+
+  onChangeStatus() {
+    this.filterData();
+    //console.error(this.report_list);
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DaftarLaporanComponent } from './daftar-laporan/daftar-laporan.component';
 import { DaftarSelesaiComponent } from './daftar-selesai/daftar-selesai.component';
@@ -20,4 +20,4 @@ export const routes:  Routes = [
   { path: 'daftar-selesai', component: DaftarSelesaiComponent, canActivate: [AuthGuard] },
   { path: 'detail-laporan/:reported_account_id', component: DetailLaporanComponent, canActivate: [AuthGuard] },
   { path: 'tweets', component: TweetsComponent, canActivate: [AuthGuard] }
-];
+]

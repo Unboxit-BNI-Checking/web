@@ -36,8 +36,8 @@
                 <th scope="col" class="px-6 py-3">
                     Nomor Rekening
                 </th>
-                <th scope="col" class="px-6 py-3">
-                    Jumlah Laporan
+                <th scope="col" class="px-6 py-3" >
+                    <button (click)="sortDataByReportCounts">Jumlah Laporan</button>
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Status
@@ -51,30 +51,37 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of filtered_report | search: searchText" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <ng-container *ngIf="item.status < 3">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{item.reported_account_id}}
-                    </th>
-                    <td class="px-6 py-4">
-                        {{item.account_number}}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{item.reports_count}}
-                    </td>
-                    <td class="px-6 py-4">
-                        <span *ngIf="item.status == 1" class="bg-gray-100 text-gray-500 rounded-lg p-2">Dilaporkan</span>
-                        <span *ngIf="item.status == 2" class="bg-yellow-100 text-yellow-500 rounded-lg p-2">Investigate</span>
-                    </td>
-                    <td class="px-6 py-4">
-                        {{item.admin}}
-                    </td>
-                    <td class="px-6 py-4">
-                        <a [routerLink]="'/detail-laporan/' + item.reported_account_id" *ngIf="item.status == 1" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
-                        <a [routerLink]="'/detail-laporan-investigasi/' + item.reported_account_id" *ngIf="item.status == 2" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
-                    </td>
-                </ng-container>
-            </tr>
+            <ng-template *ngIf="filtered_report.length > 0; else noData">
+                <tr *ngFor="let item of filtered_report | search: searchText" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <ng-container *ngIf="item.status < 3">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{item.reported_account_id}}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{item.account_number}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{item.reports_count}}
+                        </td>
+                        <td class="px-6 py-4">
+                            <span *ngIf="item.status == 1" class="bg-gray-100 text-gray-500 rounded-lg p-2">Dilaporkan</span>
+                            <span *ngIf="item.status == 2" class="bg-yellow-100 text-yellow-500 rounded-lg p-2">Investigate</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            {{item.admin}}
+                        </td>
+                        <td class="px-6 py-4">
+                            <a [routerLink]="'/detail-laporan/' + item.reported_account_id" *ngIf="item.status == 1" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
+                            <a [routerLink]="'/detail-laporan-investigasi/' + item.reported_account_id" *ngIf="item.status == 2" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
+                        </td>
+                    </ng-container>
+                </tr>
+            </ng-template>
+            <ng-template #noData>
+                <tr>
+                  <td colspan="6" class="text-center py-4">Data tidak ditemukan</td>
+                </tr>
+            </ng-template>
         </tbody>
     </table>
     <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4 mb-10" aria-label="Table navigation">
