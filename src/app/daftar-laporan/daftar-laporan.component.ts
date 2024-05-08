@@ -70,10 +70,23 @@ export class DaftarLaporanComponent implements OnInit {
     this.filterData();
     //console.error(this.report_list);
   }
-  sortDataByReportCounts() {
+  sortDataByReportCounts(key: number) {
+    let aValue: number, bValue: number;
+
     this.filtered_report.sort((a, b) => {
-      const aValue = a.reports_count;
-      const bValue = b.reports_count;
+      if (key === 0) {
+        aValue = a.reported_account_id;
+        bValue = b.reported_account_id;
+      } else if (key === 1) {
+        aValue = parseInt(a.account_number);
+        bValue = parseInt(b.account_number);
+      } else if (key === 2) {
+        aValue = a.reports_count;
+        bValue = b.reports_count;
+      } else if (key === 3) {
+        aValue = a.status;
+        bValue = b.status;
+      }
       return this.sortDirection === 'asc' ? aValue - bValue : bValue - aValue;
     });
     this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
