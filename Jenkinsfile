@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        docker_login_password = credentials('b6d657b1-feea-4ff0-91f6-f71c9602f0cc')
+    }
+
     stages {
         stage('Delete the old container') {
             steps {
@@ -13,6 +17,13 @@ pipeline {
             steps {
                 echo 'Deleting unused images'
                 sh 'docker image prune -a -f'
+            }
+        }
+
+        stage('Login docker using unboxit account') {
+            steps {
+                echo 'Pulling the image'
+                sh "docker login ghcr.io -u jonathanrichard13 -p '${docker_login_password.toString()}'"
             }
         }
 
