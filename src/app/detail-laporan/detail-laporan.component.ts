@@ -96,6 +96,16 @@ export class DetailLaporanComponent implements OnInit {
     })
   }
 
+  ditolak(){
+    // alert("Yakin?");
+    const body = {"status": 5}
+    axios.patch('/api/reportedAcc/reports/'+ this.reportedAccountId +'/status', body, {headers: { "Authorization": "Bearer " + this.authService.getToken() }}).then(() => {
+      this.router.navigateByUrl("/daftar-selesai");
+    })
+  }
+
+
+
   getCurrentReport() {
     return this.reportList[this.currentIndex];
   }
