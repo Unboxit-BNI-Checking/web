@@ -75,7 +75,7 @@ export class DaftarLaporanComponent implements OnInit {
       const aValue = a.reports_count;
       const bValue = b.reports_count;
       return this.sortDirection === 'asc' ? aValue - bValue : bValue - aValue;
-    }); console.log('works');
+    });
     this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
   }
 }
