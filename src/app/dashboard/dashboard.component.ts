@@ -210,14 +210,14 @@ export class DashboardComponent implements OnInit {
         yaxis: {
           labels: {
             formatter: function (value: string) {
-              return value + "Laporan"
+              return value + " Laporan"
             },
           },
         },
         xaxis: {
           labels: {
             formatter: function (value: string) {
-              return value + "Laporan"
+              return value + " Laporan"
             },
           },
           axisTicks: {
