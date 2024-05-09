@@ -38,6 +38,7 @@ export class DaftarSelesaiComponent implements OnInit {
   report_list: report[] = [];
   filtered_report: report[] = [];
   searchText = '';
+  sortDirection: string = 'asc';
 
   async getReport(){
     try{
@@ -76,5 +77,27 @@ export class DaftarSelesaiComponent implements OnInit {
   onChangeStatus() {
     this.filterData();
     //console.error(this.report_list);
+  }
+
+  sortDataByReportCounts(key: number) {
+    let aValue: number, bValue: number;
+
+    this.filtered_report.sort((a, b) => {
+      if (key === 0) {
+        aValue = a.reported_account_id;
+        bValue = b.reported_account_id;
+      } else if (key === 1) {
+        aValue = parseInt(a.account_number);
+        bValue = parseInt(b.account_number);
+      } else if (key === 2) {
+        aValue = a.reports_count;
+        bValue = b.reports_count;
+      } else if (key === 3) {
+        aValue = a.status;
+        bValue = b.status;
+      }
+      return this.sortDirection === 'asc' ? aValue - bValue : bValue - aValue;
+    });
+    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
   }
 }

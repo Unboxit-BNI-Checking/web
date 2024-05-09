@@ -104,8 +104,6 @@ export class DetailLaporanComponent implements OnInit {
     })
   }
 
-
-
   getCurrentReport() {
     return this.reportList[this.currentIndex];
   }
@@ -122,10 +120,14 @@ export class DetailLaporanComponent implements OnInit {
   }
 
   formatTime(date: Date): string {
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
+    // Adjust the time to GMT+7 time zone
+    const adjustedDate = new Date(date.getTime() + (7 * 60 * 60 * 1000));
+    
+    const hours = adjustedDate.getHours();
+    const minutes = adjustedDate.getMinutes();
+    const seconds = adjustedDate.getSeconds();
+    
     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  }
+}
 
 }

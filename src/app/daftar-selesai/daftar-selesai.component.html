@@ -31,16 +31,16 @@
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    ID
+                    <button (click)="sortDataByReportCounts(0)">ID</button>
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Nomor Rekening
+                    <button (click)="sortDataByReportCounts(1)">Nomor Rekening</button>
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Jumlah Laporan
+                    <button (click)="sortDataByReportCounts(2)">Jumlah Laporan</button>
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Status
+                    <button (click)="sortDataByReportCounts(3)">Status</button>
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Assignee
