@@ -5,6 +5,7 @@ import { AuthService } from '../auth.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SearchPipe } from '../search.pipe';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 interface report {
@@ -18,7 +19,7 @@ interface report {
 @Component({
   selector: 'app-daftar-laporan',
   standalone: true,
-  imports: [CommonModule, RouterLink, SearchPipe, FormsModule, NgFor],
+  imports: [CommonModule, RouterLink, SearchPipe, FormsModule, NgFor, NgxPaginationModule],
   templateUrl: './daftar-laporan.component.html',
   styleUrl: './daftar-laporan.component.css'
 })
@@ -27,6 +28,8 @@ export class DaftarLaporanComponent implements OnInit {
 
   statusList: string[] = ["Dilaporkan", "Investigasi"];
   selectedStatus: number = 0;
+  itemsPerPage: number = 5;
+  currentPage: number = 1;
 
   constructor(private authService: AuthService, private activatedRoute: ActivatedRoute) {
     
@@ -48,8 +51,9 @@ export class DaftarLaporanComponent implements OnInit {
     try{
       const token = this.authService.getToken();
       const response = await axios.get('/api/reportedAcc/website', {headers: {"Authorization": "Bearer " + token}});
-      //console.log(response.data.data);
+      //console.error(response.data.data);
       this.report_list = response.data.data;
+      this.report_list = this.report_list.filter((item) => item.status < 3);
       if (this.selectedStatus != 0) {
         this.filterData();
       } else {
@@ -63,13 +67,14 @@ export class DaftarLaporanComponent implements OnInit {
 
   filterData() {
     this.filtered_report = this.report_list.filter(item => (this.selectedStatus == 0 || item.status == this.selectedStatus));
-    console.error(this.selectedStatus);
+    //console.error(this.selectedStatus);
   }
 
   onChangeStatus() {
     this.filterData();
     //console.error(this.report_list);
   }
+
   sortDataByReportCounts(key: number) {
     let aValue: number, bValue: number;
 
@@ -90,5 +95,9 @@ export class DaftarLaporanComponent implements OnInit {
       return this.sortDirection === 'asc' ? aValue - bValue : bValue - aValue;
     });
     this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+  }
+
+  onPageChange(page: number) {
+    this.currentPage = page;
   }
 }

@@ -5,6 +5,7 @@ import { AuthService } from '../auth.service';
 import { RouterLink } from '@angular/router';
 import { SearchPipe } from "../search.pipe";
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 interface report {
@@ -21,7 +22,7 @@ interface report {
     standalone: true,
     templateUrl: './daftar-selesai.component.html',
     styleUrl: './daftar-selesai.component.css',
-    imports: [CommonModule, RouterLink, SearchPipe, FormsModule, NgFor]
+    imports: [CommonModule, RouterLink, SearchPipe, FormsModule, NgFor, NgxPaginationModule]
 })
 export class DaftarSelesaiComponent implements OnInit {
 
@@ -41,6 +42,8 @@ export class DaftarSelesaiComponent implements OnInit {
   sortDirection: string = 'asc';
   total_laporan_selesai: number = 0;
   account_number: string = '';
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
 
   async getReport(){
     try{
@@ -66,6 +69,7 @@ export class DaftarSelesaiComponent implements OnInit {
           return null; // atau nilai default lainnya
         }
       }).filter((item: any) => item !== null); // Filter nilai yang null
+      this.report_list = this.report_list.filter((item) => item.status > 2);
       this.report_list = this.report_list.sort((a, b) => b.time_finished.getTime() - a.time_finished.getTime());  
       this.filtered_report = this.report_list;
     }catch (error) {
@@ -153,4 +157,7 @@ export class DaftarSelesaiComponent implements OnInit {
     }
   }
 
+  onPageChange(page: number) {
+    this.currentPage = page;
+  }
 }
