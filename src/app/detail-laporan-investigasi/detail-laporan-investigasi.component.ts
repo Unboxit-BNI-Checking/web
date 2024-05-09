@@ -49,10 +49,11 @@ export class DetailLaporanInvestigasiComponent {
     }
     this.action = action;
     this.showModal = true;
+    console.log(action);
   }
 
   closeModal() {
-    this.modalMessage ='';
+    this.modalMessage = '';
     this.showModal = false;
   }
 
