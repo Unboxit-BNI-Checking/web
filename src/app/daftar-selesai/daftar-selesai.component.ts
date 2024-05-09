@@ -39,6 +39,7 @@ export class DaftarSelesaiComponent implements OnInit {
   filtered_report: report[] = [];
   searchText = '';
   sortDirection: string = 'asc';
+  total_laporan_selesai: number = 0;
 
   async getReport(){
     try{
@@ -107,6 +108,46 @@ export class DaftarSelesaiComponent implements OnInit {
     date.setHours(date.getHours() + 7);
     // Format the date using DatePipe
     return this.datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss') || '';
+  }
+
+  pagination = {
+    currentPage: 1,
+    entriesPerPage: 10,
+    startIndex: 1,
+    endIndex: 10,
+    totalPages: 10
+  };
+
+  // Assuming filtered_report is your array of data
+  // Initialize this array with your actual data
+
+  // Function to update pagination indexes
+  paginatedData(): any[] {
+    const startIndex = (this.pagination.currentPage - 1) * this.pagination.entriesPerPage;
+    const endIndex = startIndex + this.pagination.entriesPerPage;
+    return this.filtered_report.slice(startIndex, endIndex);
+  }
+
+  // Function to update pagination indexes
+  updatePaginationIndexes(): void {
+    this.pagination.startIndex = (this.pagination.currentPage - 1) * this.pagination.entriesPerPage + 1;
+    this.pagination.endIndex = Math.min(this.pagination.currentPage * this.pagination.entriesPerPage, this.filtered_report.length);
+  }
+
+  // Function to go to previous page
+  prevPage(): void {
+    if (this.pagination.currentPage > 1) {
+      this.pagination.currentPage--;
+      this.updatePaginationIndexes();
+    }
+  }
+
+  // Function to go to next page
+  nextPage(): void {
+    if (this.pagination.currentPage < this.pagination.totalPages) {
+      this.pagination.currentPage++;
+      this.updatePaginationIndexes();
+    }
   }
 
 }

@@ -91,11 +91,10 @@
                     <textarea id="kronologi" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value= {{getCurrentReport().chronology}} placeholder="" readonly></textarea>
                 </div>
               </div>
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Attachment</label>
-                <div *ngFor="let attachment of getCurrentReport().attachment">
-                  <a [href]="attachment" target="_blank"><img [src]="attachment" class="w-full mb-4" *ngIf="attachment" style="max-width: 100px; max-height: 100px; width: auto; height: auto;"></a>
-                </div>
-                
+              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Attachment</label>
+              <div *ngFor="let attachment of getCurrentReport().attachment">
+                <a [href]="attachment" target="_blank"><img [src]="attachment" class="w-full mb-4" *ngIf="attachment" style="max-width: 100px; max-height: 100px; width: auto; height: auto;"></a>
+              </div>
             </div>
             <div class="mt-10 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">
               <button type="button" (click)="ditolak()" class="py-2.5 px-5 ms-3 text-sm font-medium text-blue-500 focus:outline-none bg-blue-200 rounded-full border border-gray-200 hover:bg-blue-500 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" style="width: 48%;">Ditolak</button>

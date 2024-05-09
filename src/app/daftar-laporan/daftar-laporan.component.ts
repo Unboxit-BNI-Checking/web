@@ -25,7 +25,7 @@ interface report {
 
 export class DaftarLaporanComponent implements OnInit {
 
-  statusList: string[] = ["Dilaporkan", "Investigate"];
+  statusList: string[] = ["Dilaporkan", "Investigasi"];
   selectedStatus: number = 0;
 
   constructor(private authService: AuthService, private activatedRoute: ActivatedRoute) {
