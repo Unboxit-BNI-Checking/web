@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import axios from 'axios';
 import { AuthService } from '../auth.service';
 import { CommonModule, DatePipe } from '@angular/common';
+import { Modal } from 'flowbite';
 
 interface Report {
   account_number_reported: string;
@@ -32,6 +33,7 @@ export class DetailLaporanInvestigasiComponent {
   reportList: Report[] = [];
   datePipe: DatePipe;
   currentIndex: number = 0;
+  account_number_reported: string = '';
 
   constructor(private authService: AuthService, private route: ActivatedRoute, private injector: Injector, private router: Router) {
     this.datePipe = this.injector.get(DatePipe);
@@ -41,31 +43,19 @@ export class DetailLaporanInvestigasiComponent {
   modalTitle: string = '';
   modalMessage: string = '';
   action: string = '';
+  private modals = new Map<string, any>();
 
-  openModal(buttonText: string, action: string) {
-    this.modalTitle = buttonText;
-    if(buttonText != "Bebas Aduan"){
-      this.modalMessage = "Saldo dari rekening tersebut akan terblokir.";
-    }
-    this.action = action;
-    this.showModal = true;
-    console.log(action);
+  openModal(modal: string) {
+    const modalElement = document.getElementById(modal);
+    const modalInstance = new Modal(modalElement);
+    modalInstance.init();
+    modalInstance.show();
+    this.modals.set(modal, modalInstance);
   }
 
-  closeModal() {
-    this.modalMessage = '';
-    this.showModal = false;
-  }
-
-  submitModal() {
-    if (this.action === 'blokir') {
-      this.blokir();
-    } else if (this.action === 'bebasAduan') {
-      this.bebasAduan();
-    }
-    this.modalMessage = '';
-    this.action = '';
-    this.closeModal();
+  closeModal(modal: string) {
+    const modalInstance = this.modals.get(modal);
+    modalInstance.hide();
   }
 
   ngOnInit(): void {
@@ -85,6 +75,7 @@ export class DetailLaporanInvestigasiComponent {
       });
       // this.reportList = response.data.data;
       this.reportList = response.data.data.map((report: Report) => {
+        this.account_number_reported = report.account_number_reported;
         if (typeof report.attachment === 'string') {
           // Jika attachment adalah string tunggal, kita akan buat array dengan satu elemen
           return { ...report, attachment: [report.attachment] };
@@ -125,6 +116,7 @@ export class DetailLaporanInvestigasiComponent {
     axios.patch('/api/reportedAcc/reports/'+ this.reportedAccountId +'/status', body, {headers: { "Authorization": "Bearer " + this.authService.getToken() }}).then(() => {
       this.router.navigateByUrl("/daftar-selesai");
     })
+    this.closeModal('blokir-modal');
   }
 
   bebasAduan(){
@@ -133,6 +125,7 @@ export class DetailLaporanInvestigasiComponent {
     axios.patch('/api/reportedAcc/reports/'+ this.reportedAccountId +'/status', body, {headers: { "Authorization": "Bearer " + this.authService.getToken() }}).then(() => {
       this.router.navigateByUrl("/daftar-selesai");
     })
+    this.closeModal('bebasAduan-modal');
   }
 
   getCurrentReport() {

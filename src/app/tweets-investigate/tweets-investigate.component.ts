@@ -1,8 +1,7 @@
-import { Token } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import axios from 'axios';
 import { AuthService } from '../auth.service';
+import axios from 'axios';
 import { NgFor } from '@angular/common';
 
 interface tweet {
@@ -17,13 +16,13 @@ interface reportedAccountNumber {
 }
 
 @Component({
-  selector: 'app-tweets',
+  selector: 'app-tweets-investigate',
   standalone: true,
   imports: [RouterLink, NgFor],
-  templateUrl: './tweets.component.html',
-  styleUrl: './tweets.component.css',
+  templateUrl: './tweets-investigate.component.html',
+  styleUrl: './tweets-investigate.component.css'
 })
-export class TweetsComponent implements OnInit {
+export class TweetsInvestigateComponent {
   constructor(
     private activatedRoute: ActivatedRoute,
     private authService: AuthService

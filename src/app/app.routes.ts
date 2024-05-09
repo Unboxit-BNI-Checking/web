@@ -8,6 +8,8 @@ import { DetailLaporanComponent } from './detail-laporan/detail-laporan.componen
 import { DetailLaporanClearComponent } from './detail-laporan-clear/detail-laporan-clear.component';
 import { DetailLaporanInvestigasiComponent } from './detail-laporan-investigasi/detail-laporan-investigasi.component';
 import { AuthGuard } from './auth.guard';
+import { TweetsClearComponent } from './tweets-clear/tweets-clear.component';
+import { TweetsInvestigateComponent } from './tweets-investigate/tweets-investigate.component';
 
 export const routes:  Routes = [
   // TODO: Later make sure to add "authenticated" logic for this base path 
@@ -19,5 +21,7 @@ export const routes:  Routes = [
   { path: 'detail-laporan-investigasi/:reported_account_id', component: DetailLaporanInvestigasiComponent, canActivate: [AuthGuard] },
   { path: 'daftar-selesai', component: DaftarSelesaiComponent, canActivate: [AuthGuard] },
   { path: 'detail-laporan/:reported_account_id', component: DetailLaporanComponent, canActivate: [AuthGuard] },
-  { path: 'tweets', component: TweetsComponent, canActivate: [AuthGuard] }
+  { path: 'tweets/:norek', component: TweetsComponent, canActivate: [AuthGuard] },
+  { path: 'tweets-clear/:norek', component: TweetsClearComponent, canActivate: [AuthGuard] },
+  { path: 'tweets-investigate/:norek', component: TweetsInvestigateComponent, canActivate: [AuthGuard] }
 ]

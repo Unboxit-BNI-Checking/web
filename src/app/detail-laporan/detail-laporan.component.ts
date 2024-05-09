@@ -3,6 +3,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import axios from 'axios';
 import { AuthService } from '../auth.service';
+import { Modal } from 'flowbite';
 
 interface Report {
   account_number_reported: string;
@@ -32,38 +33,53 @@ export class DetailLaporanComponent implements OnInit {
   reportList: Report[] = [];
   datePipe: DatePipe;
   currentIndex: number = 0;
+  private modals = new Map<string, any>();
+  account_number_reported: string = '';
 
   constructor(private authService: AuthService, private route: ActivatedRoute, private injector: Injector, private router: Router) {
     this.datePipe = this.injector.get(DatePipe);
   }
 
-  showModal: boolean = false;
-  modalTitle: string = '';
-  modalMessage: string = '';
-  action: string = '';
+  // showModal: boolean = false;
+  // modalTitle: string = '';
+  // modalMessage: string = '';
+  // action: string = '';
 
-  openModal(buttonText: string, action: string) {
-    this.modalTitle = buttonText;
-    if (buttonText != "Investigasi") {
-      this.modalMessage = "Laporan tersebut akan ditolak.";
-    }
-    this.action = action;
-    this.showModal = true;
+  // openModal(buttonText: string, action: string) {
+  //   this.modalTitle = buttonText;
+  //   if (buttonText != "Investigasi") {
+  //     this.modalMessage = "Laporan tersebut akan ditolak.";
+  //   }
+  //   this.action = action;
+  //   this.showModal = true;
+  // }
+
+  // closeModal() {
+  //   this.modalMessage='';
+  //   this.showModal = false;
+  // }
+
+  // submitModal() {
+  //   if (this.action === 'tolak') {
+  //     this.ditolak();
+  //   } else if (this.action === 'investigasi') {
+  //     this.investigate();
+  //   }
+  //   this.action = '';
+  //   this.closeModal();
+  // }
+
+  openModal(modal: string) {
+    const modalElement = document.getElementById(modal);
+    const modalInstance = new Modal(modalElement);
+    modalInstance.init();
+    modalInstance.show();
+    this.modals.set(modal, modalInstance);
   }
 
-  closeModal() {
-    this.modalMessage='';
-    this.showModal = false;
-  }
-
-  submitModal() {
-    if (this.action === 'tolak') {
-      this.ditolak();
-    } else if (this.action === 'investigasi') {
-      this.investigate();
-    }
-    this.action = '';
-    this.closeModal();
+  closeModal(modal: string) {
+    const modalInstance = this.modals.get(modal);
+    modalInstance.hide();
   }
 
   ngOnInit(): void {
@@ -83,6 +99,7 @@ export class DetailLaporanComponent implements OnInit {
       });
       // this.reportList = response.data.data;
       this.reportList = response.data.data.map((report: Report) => {
+        this.account_number_reported = report.account_number_reported;
         if (typeof report.attachment === 'string') {
           // Jika attachment adalah string tunggal, kita akan buat array dengan satu elemen
           return { ...report, attachment: [report.attachment] };
@@ -123,6 +140,7 @@ export class DetailLaporanComponent implements OnInit {
     axios.patch('/api/reportedAcc/reports/'+ this.reportedAccountId +'/status', body, {headers: { "Authorization": "Bearer " + this.authService.getToken() }}).then(() => {
       this.router.navigateByUrl("/daftar-laporan");
     })
+    this.closeModal("investigate-modal");
   }
 
   ditolak(){
@@ -131,7 +149,8 @@ export class DetailLaporanComponent implements OnInit {
     axios.patch('/api/reportedAcc/reports/'+ this.reportedAccountId +'/status', body, {headers: { "Authorization": "Bearer " + this.authService.getToken() }}).then(() => {
       this.router.navigateByUrl("/daftar-selesai");
     })
-  }
+    this.closeModal("tolak-modal");
+    }
 
   getCurrentReport() {
     return this.reportList[this.currentIndex];
@@ -158,5 +177,6 @@ export class DetailLaporanComponent implements OnInit {
     
     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   }
+
 
 }

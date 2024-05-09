@@ -40,6 +40,7 @@ export class DaftarSelesaiComponent implements OnInit {
   searchText = '';
   sortDirection: string = 'asc';
   total_laporan_selesai: number = 0;
+  account_number: string = '';
 
   async getReport(){
     try{
@@ -48,6 +49,7 @@ export class DaftarSelesaiComponent implements OnInit {
       console.log(response.data.data);
       this.report_list = response.data.data.map((item: any) => {
         try {
+          this.account_number = item.account_number;
           return {
             reported_account_id: item.reported_account_id,
             account_number: item.account_number,
@@ -63,7 +65,8 @@ export class DaftarSelesaiComponent implements OnInit {
           // Jika terjadi kesalahan, kembalikan null atau nilai default 
           return null; // atau nilai default lainnya
         }
-      }).filter((item: any) => item !== null); // Filter nilai yang null  
+      }).filter((item: any) => item !== null); // Filter nilai yang null
+      this.report_list = this.report_list.sort((a, b) => b.time_finished.getTime() - a.time_finished.getTime());  
       this.filtered_report = this.report_list;
     }catch (error) {
       console.log(error);

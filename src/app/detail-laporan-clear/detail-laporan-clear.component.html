@@ -41,10 +41,12 @@
             </div>
             <!-- Baris kedua -->
             <div class="bg-white h-24 rounded-2xl border border-gray-200 p-4">
-              <button type="button" class="relative inline-flex items-center w-full px-4 py-4 text-sm font-medium  text-black hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
-                <img src="../assets/logo_x.png" class="w-5 h-5 me-2.5" alt="X">
-                {{getCurrentReport().twitter_reports_count}} Laporan Terkait 
-              </button>
+              <a [href]="'/tweets-clear/' + account_number_reported + '?report_id=' + reportedAccountId">
+                <button type="button" class="relative inline-flex items-center w-full px-4 py-4 text-sm font-medium  text-black hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                  <img src="../assets/logo_x.png" class="w-5 h-5 me-2.5" alt="X">
+                  {{getCurrentReport().twitter_reports_count}} Laporan Terkait 
+                </button>
+              </a>
             </div>
           </div>
 

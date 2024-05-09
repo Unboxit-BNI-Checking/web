@@ -31,6 +31,7 @@ export class DetailLaporanClearComponent {
   reportList: Report[] = [];
   datePipe: DatePipe;
   currentIndex: number = 0;
+  account_number_reported: string = '';
 
   constructor(private authService: AuthService, private route: ActivatedRoute, private injector: Injector) {
     this.datePipe = this.injector.get(DatePipe);
@@ -53,6 +54,7 @@ export class DetailLaporanClearComponent {
       });
       // this.reportList = response.data.data;
       this.reportList = response.data.data.map((report: Report) => {
+        this.account_number_reported = report.account_number_reported;
         if (typeof report.attachment === 'string') {
           // Jika attachment adalah string tunggal, kita akan buat array dengan satu elemen
           return { ...report, attachment: [report.attachment] };
