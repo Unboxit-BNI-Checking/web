@@ -37,6 +37,30 @@ export class DetailLaporanComponent implements OnInit {
     this.datePipe = this.injector.get(DatePipe);
   }
 
+  showModal: boolean = false;
+  modalTitle: string = '';
+  action: string = '';
+
+  openModal(buttonText: string, action: string) {
+    this.modalTitle = buttonText;
+    this.action = action;
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
+
+  submitModal() {
+    if (this.action === 'tolak') {
+      this.ditolak();
+    } else if (this.action === 'investigasi') {
+      this.investigate();
+    }
+    this.action = '';
+    this.closeModal();
+  }
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.reportedAccountId = +params['reported_account_id'] || 0;
