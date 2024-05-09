@@ -39,15 +39,20 @@ export class DetailLaporanComponent implements OnInit {
 
   showModal: boolean = false;
   modalTitle: string = '';
+  modalMessage: string = '';
   action: string = '';
 
   openModal(buttonText: string, action: string) {
     this.modalTitle = buttonText;
+    if (buttonText != "Investigasi") {
+      this.modalMessage = "Laporan tersebut akan ditolak.";
+    }
     this.action = action;
     this.showModal = true;
   }
 
   closeModal() {
+    this.modalMessage='';
     this.showModal = false;
   }
 

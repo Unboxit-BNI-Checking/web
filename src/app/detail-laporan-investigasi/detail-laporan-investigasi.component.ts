@@ -37,6 +37,36 @@ export class DetailLaporanInvestigasiComponent {
     this.datePipe = this.injector.get(DatePipe);
   }
 
+  showModal: boolean = false;
+  modalTitle: string = '';
+  modalMessage: string = '';
+  action: string = '';
+
+  openModal(buttonText: string, action: string) {
+    this.modalTitle = buttonText;
+    if(buttonText != "Bebas Aduan"){
+      this.modalMessage = "Saldo dari rekening tersebut akan terblokir.";
+    }
+    this.action = action;
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.modalMessage ='';
+    this.showModal = false;
+  }
+
+  submitModal() {
+    if (this.action === 'blokir') {
+      this.blokir();
+    } else if (this.action === 'bebasAduan') {
+      this.bebasAduan();
+    }
+    this.modalMessage = '';
+    this.action = '';
+    this.closeModal();
+  }
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.reportedAccountId = +params['reported_account_id'] || 0;
