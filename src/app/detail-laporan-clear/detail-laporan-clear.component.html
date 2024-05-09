@@ -34,9 +34,9 @@
               <h6 class="mb-4 text-sm text-gray-900 dark:text-white">Nama Pemilik Rekening: <strong>{{getCurrentReport().account_username_reported}}</strong></h6>
               <h6 class="mb-4 text-sm text-gray-900 dark:text-white">Nama Bank: <strong>Bank Negara Indonesia</strong></h6>
               <h6 class="mb-4 text-sm text-gray-900 dark:text-white">Status Laporan: 
-                <span *ngIf="getCurrentReport().status === 3" class="bg-red-100 text-red-500 rounded-lg p-2">Saldo Terblokir</span>
-                <span *ngIf="getCurrentReport().status === 5" class="bg-blue-100 text-blue-500 rounded-lg p-2">Ditolak</span>
-                <span *ngIf="getCurrentReport().status === 4" class="bg-green-100 text-green-500 rounded-lg p-2">Bebas Aduan</span>
+                <span *ngIf="getCurrentReport().status === 3" class="bg-[#FBE9ED] text-[#D6264F] rounded-lg p-2">Saldo Terblokir</span>
+                <span *ngIf="getCurrentReport().status === 5" class="bg-[#E6F0F3] text-[#006885] rounded-lg p-2">Ditolak</span>
+                <span *ngIf="getCurrentReport().status === 4" class="bg-[#E7F8EF] text-[#10B55A] rounded-lg p-2">Bebas Aduan</span>
               </h6>
             </div>
             <!-- Baris kedua -->

@@ -1,6 +1,6 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, Injector, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import axios from 'axios';
 import { AuthService } from '../auth.service';
 
@@ -128,6 +128,6 @@ export class DetailLaporanComponent implements OnInit {
     const seconds = adjustedDate.getSeconds();
     
     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-}
+  }
 
 }

@@ -1,0 +1,8 @@
+.status-label {
+    display: inline-block;
+    width: 124px;
+    height: 28px;
+    padding: 4px 6px;
+    border-radius: 4px 0 0 0;
+    opacity: 1;
+  }

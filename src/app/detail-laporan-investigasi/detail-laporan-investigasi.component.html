@@ -1,100 +1,108 @@
-<div class="absolute inset-y-0 left-2 top-2 right-0 pl-64 pr-4 pt-14 overflow-y-auto">
-    <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-2">
-      <!-- Breadcrumb -->
-      <nav class="flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700" aria-label="Breadcrumb">
-        <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-          <li class="inline-flex items-center">
-            <a href="#" routerLink="/daftar-laporan" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-            Laporan
-            </a>
-          </li>
-          <li aria-current="page">
-            <div class="flex items-center">
-              <svg class="rtl:rotate-180  w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-              </svg>
-              <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Detail Laporan</span>
-            </div>
-          </li>
-        </ol>
-      </nav>
-    </div>
-    <div class="flex flex-col items-start"> <!-- Adjusted -->
-      <p class="text-black text-2xl font-semibold mb-2 ms-6">Detail Laporan</p>
-    </div>
-  
-  <section class="bg-white dark:bg-gray-900">
-    <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
-      <div class="sm:col-span-1">
-        <div class="max-w-2xl px-4 py-8 lg:py-3">
-          <h6 class="mb-4 text-sm text-gray-900 dark:text-white">Rekening Yang Dilaporkan: <strong>{{getCurrentReport().account_number_reported}}</strong></h6>
-              <h6 class="mb-4 text-sm text-gray-900 dark:text-white">Nama Pemilik Rekening: <strong>{{getCurrentReport().account_username_reported}}</strong></h6>
-              <h6 class="mb-4 text-sm text-gray-900 dark:text-white">Nama Bank: <strong>Bank Negara Indonesia</strong></h6>
-              <h6 class="mb-4 text-sm text-gray-900 dark:text-white">Status Laporan: 
-                <span *ngIf="getCurrentReport().status === 2" class="bg-yellow-100 text-yellow-500 rounded-lg p-2">Investigate</span>
-              </h6>
+<div class="absolute inset-y-0 left-2 top-2 right-0 pl-64 pr-4 pt-14 overflow-y-auto bg-gray-50">
+  <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-2">
+    <!-- Breadcrumb -->
+    <nav class="flex px-5 py-3 text-gray-700 bg-gray-50 dark:bg-gray-800 dark:border-gray-700" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+        <li class="inline-flex items-center">
+          <a href="#" routerLink="/daftar-laporan" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+          Laporan
+          </a>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="rtl:rotate-180  w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Detail Laporan</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+  </div>
+  <div class="flex flex-col items-start"> <!-- Adjusted -->
+    <p class="text-black text-2xl font-semibold mb-2 ms-6">Detail Laporan</p>
+  </div>
+  <section class="dark:bg-gray-900">
+    <ng-container *ngIf="reportList.length > 0">
+      <div class="flex">
+        <!-- Kolom pertama -->
+        <div class="flex-grow w-1/4 p-4">
+          <!-- Baris pertama -->
+          <div class="bg-white h-40 mb-4 rounded-2xl border border-gray-200 p-4">
+            <h6 class="mb-4 text-sm text-gray-900 dark:text-white">Rekening Yang Dilaporkan: <strong>{{getCurrentReport().account_number_reported}}</strong></h6>
+            <h6 class="mb-4 text-sm text-gray-900 dark:text-white">Nama Pemilik Rekening: <strong>{{getCurrentReport().account_username_reported}}</strong></h6>
+            <h6 class="mb-4 text-sm text-gray-900 dark:text-white">Nama Bank: <strong>Bank Negara Indonesia</strong></h6>
+            <h6 class="mb-4 text-sm text-gray-900 dark:text-white">Status Laporan: 
+              <span *ngIf="getCurrentReport().status === 2" class="bg-[#FFF6E6] text-[#FFA500] rounded-lg p-2">Investigasi</span>
+            </h6>
+          </div>
+          <!-- Baris kedua -->
+          <div class="bg-white h-24 rounded-2xl border border-gray-200 p-4">
+            <button type="button" class="relative inline-flex items-center w-full px-4 py-4 text-sm font-medium text-black border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white" (click)="previousReport()">
+              <img src="../assets/logo_x.png" class="w-5 h-5 me-2.5" alt="X">
+              {{getCurrentReport().twitter_reports_count}} Laporan Terkait 
+            </button>
+          </div>
+        </div>
+
+        <!-- Kolom kedua -->
+        <div class="flex-grow p-4  w-1/2">
           <form action="#">
-            <div class="grid gap-4 mb-4 sm:grid-cols-3 sm:gap-6 sm:mb-5">
-              <div class="sm:col-span-1">
-                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID Laporan</label>
-                <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={{getCurrentReport().reported_id}} placeholder="" readonly>
-              </div>
-              <div class="sm:col-span-2">
-                <label for="Tanggal Laporan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Laporan</label>
-                <input type="text" name="tanggalLaporan" id="tanggalLaporan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" [value]="formatDate(getCurrentReport().reports_created_at)" placeholder="" required="" readonly>
-              </div>
-              <div class="sm:col-span-1">
-                  <label for="rekeningPelapor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rekening Pelapor</label>
-                  <input type="text" name="rekeningPelapor" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={{getCurrentReport().account_number}} placeholder="" required="" readonly>
-              </div>
-              <div class="sm:col-span-2">
-                  <label for="namaPelapor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Pelapor</label>
-                  <input type="text" name="rekeningPelapor" id="rekeningPelapor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={{getCurrentReport().account_username}} placeholder="" required="" readonly>
-              </div>
-              <div class="sm:col-span-1">
-                <label for="Tanggal Transaksi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Transaksi</label>
-                <input type="text" name="tanggalTransaksi" id="tanggalTransaksi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" [value]="formatDate(getCurrentReport().transaction_created_at)" placeholder="" required="" readonly>
-              </div>
-              <div class="sm:col-span-1">
-                <label for="Tanggal Transaksi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waktu Transaksi</label>
-                <input type="text" name="tanggalTransaksi" id="tanggalTransaksi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" [value]="formatTime(getCurrentReport().transaction_created_at)" placeholder="" required="" readonly>
-              </div>
-              <div class="sm:col-span-1">
-                  <label for="Kerugian Transaksi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kerugian Transaksi</label>
-                  <input type="number" name="kerugianTransaksi" id="kerugianTransaksi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={{getCurrentReport().amount}} placeholder="" required="" readonly>
-              </div>
-              <div class="sm:col-span-3">
-                  <label for="kronologi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kronologi</label>
-                  <textarea id="kronologi" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value= {{getCurrentReport().chronology}} placeholder="" readonly></textarea>
-              </div>
-            </div>
-              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Attachment</label>
-              <div *ngFor="let attachment of getCurrentReport().attachment">
-                <a [href]="attachment" target="_blank"><img [src]="attachment" class="w-full mb-4" *ngIf="attachment" style="max-width: 100px; max-height: 100px; width: auto; height: auto;"></a>
-              </div>
-              <div class="mt-4 flex items-center justify-between">
-                <label class="block text-sm font-medium">Showing <strong>{{getCurrentIndex() + 1}}</strong> of <strong>{{reportList.length}}</strong></label>
-                <div class="flex items-center justify-center">
-                  <button type="button" class="text-orange-500 bg-orange-200 hover:bg-orange-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-orange-500 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center mr-2" (click)="previousReport()">Previous</button>
-                  <button type="button" class="text-orange-500 bg-orange-200 hover:bg-orange-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-orange-500 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center" (click)="nextReport()">Next</button>  
+            
+            <div class="bg-white h-auto mb-4 rounded-2xl border border-gray-200 p-4">
+              <div class="flex items-center justify-between">
+                  <label class="block text-sm font-medium">Showing <strong>{{getCurrentIndex() + 1}}</strong> of <strong>{{reportList.length}}</strong></label>
+                  <div class="flex items-center justify-center">
+                    <button type="button" class="text-orange-500 bg-orange-200 hover:bg-orange-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-orange-500 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center mr-2" (click)="previousReport()">Previous</button>
+                    <button type="button" class="text-orange-500 bg-orange-200 hover:bg-orange-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-orange-500 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center" (click)="nextReport()">Next</button>  
+                  </div>
+                </div>
+              <div class="grid gap-4 mt-4 mb-4 sm:grid-cols-3 sm:gap-6 sm:mb-5">
+                <div class="sm:col-span-1">
+                  <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID Laporan</label>
+                  <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={{getCurrentReport().reported_id}} placeholder="" readonly>
+                </div>
+                <div class="sm:col-span-2">
+                  <label for="Tanggal Laporan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Laporan</label>
+                  <input type="text" name="tanggalLaporan" id="tanggalLaporan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" [value]="formatDate(getCurrentReport().reports_created_at)" placeholder="" required="" readonly>
+                </div>
+                <div class="sm:col-span-1">
+                    <label for="rekeningPelapor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rekening Pelapor</label>
+                    <input type="text" name="rekeningPelapor" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={{getCurrentReport().account_number}} placeholder="" required="" readonly>
+                </div>
+                <div class="sm:col-span-2">
+                    <label for="namaPelapor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Pelapor</label>
+                    <input type="text" name="rekeningPelapor" id="rekeningPelapor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={{getCurrentReport().account_username}} placeholder="" required="" readonly>
+                </div>
+                <div class="sm:col-span-1">
+                  <label for="Tanggal Transaksi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Transaksi</label>
+                  <input type="text" name="tanggalTransaksi" id="tanggalTransaksi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" [value]="formatDate(getCurrentReport().transaction_created_at)" placeholder="" required="" readonly>
+                </div>
+                <div class="sm:col-span-1">
+                  <label for="Tanggal Transaksi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waktu Transaksi</label>
+                  <input type="text" name="tanggalTransaksi" id="tanggalTransaksi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" [value]="formatTime(getCurrentReport().transaction_created_at)" placeholder="" required="" readonly>
+                </div>
+                <div class="sm:col-span-1">
+                    <label for="Kerugian Transaksi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kerugian Transaksi</label>
+                    <input type="number" name="kerugianTransaksi" id="kerugianTransaksi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value={{getCurrentReport().amount}} placeholder="" required="" readonly>
+                </div>
+                <div class="sm:col-span-3">
+                    <label for="kronologi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kronologi</label>
+                    <textarea id="kronologi" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value= {{getCurrentReport().chronology}} placeholder="" readonly></textarea>
                 </div>
               </div>
-              <div class="mt-4 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">
-                <button type="button" (click)="blokir()" class="text-red-600 bg-red-300 hover:bg-red-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-600 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center justify-center" style="width: 48%;">Blokir Saldo</button>
-                <button type="button" (click)="bebasAduan()" class="py-2.5 px-5 ms-3 text-sm font-medium text-green-500 focus:outline-none bg-green-200 rounded-full border border-gray-200 hover:bg-green-500 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" style="width: 48%;">Bebas Aduan</button>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Attachment</label>
+                <div *ngFor="let attachment of getCurrentReport().attachment">
+                  <a [href]="attachment" target="_blank"><img [src]="attachment" class="w-full mb-4" *ngIf="attachment" style="max-width: 100px; max-height: 100px; width: auto; height: auto;"></a>
+                </div>
+                
+            </div>
+            <div class="mt-10 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">
+              <button type="button" (click)="blokir()" class="py-2.5 px-5 ms-3 text-sm font-medium text-white focus:outline-none bg-[#D6264F] rounded-full border border-gray-200 hover:bg-[#D6266F] hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" style="width: 48%;">Blokir Saldo</button>
+              <button type="button" (click)="bebasAduan()" class="text-white bg-[#10B55A] hover:bg-[#10B67C] hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-yellow-500 font-medium rounded-full text-sm inline-flex items-center justify-center px-5 py-2.5 text-center" style="width: 48%;">Bebas Aduan</button> 
             </div>
           </form>
         </div>
       </div>
-      <div class="sm:col-span-1">
-        <div class="w-48 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-          <button type="button" class="relative inline-flex items-center w-full px-4 py-4 text-sm font-medium border-b text-black border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
-              <img src="../assets/logo_x.png" class="w-5 h-5 me-2.5" alt="X">
-              {{getCurrentReport().twitter_reports_count}} Laporan Terkait 
-          </button>
-        </div>
-      </div>
-    </div>
+    </ng-container>
   </section>
-  
-  

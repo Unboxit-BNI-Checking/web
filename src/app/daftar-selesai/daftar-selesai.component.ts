@@ -1,4 +1,4 @@
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule, DatePipe, NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { AuthService } from '../auth.service';
@@ -28,7 +28,7 @@ export class DaftarSelesaiComponent implements OnInit {
   statusList: string[] = ["Blokir", "Bebas Aduan"];
   selectedStatus: number = 0;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private datePipe: DatePipe) {
     this.getReport();
   }
   ngOnInit(): void {
@@ -100,4 +100,13 @@ export class DaftarSelesaiComponent implements OnInit {
     });
     this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
   }
+  formatDate(timestamp: string): string {
+    // Parse the timestamp into a Date object
+    const date = new Date(timestamp);
+    // Adjust for GMT +7 timezone offset
+    date.setHours(date.getHours() + 7);
+    // Format the date using DatePipe
+    return this.datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss') || '';
+  }
+
 }
