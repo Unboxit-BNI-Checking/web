@@ -43,7 +43,7 @@ export class DaftarSelesaiComponent implements OnInit {
   total_laporan_selesai: number = 0;
   account_number: string = '';
   currentPage: number = 1;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 5;
 
   async getReport(){
     try{
