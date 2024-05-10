@@ -2,10 +2,13 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AuthService } from '../auth.service';
 import axios from 'axios';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
+import { SearchPipe } from '../search.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
 
 interface tweet {
-  twitter_report_id: string;
+  twitter_report_id: number;
   post_date: Date;
   twitter_username: string;
   tweet_link: string;
@@ -18,11 +21,14 @@ interface reportedAccountNumber {
 @Component({
   selector: 'app-tweets-investigate',
   standalone: true,
-  imports: [RouterLink, NgFor],
+  imports: [RouterLink, NgFor, NgIf, SearchPipe, NgxPaginationModule, FormsModule],
   templateUrl: './tweets-investigate.component.html',
   styleUrl: './tweets-investigate.component.css'
 })
 export class TweetsInvestigateComponent {
+
+  itemsPerPage: number = 5;
+  currentPage: number = 1;
   constructor(
     private activatedRoute: ActivatedRoute,
     private authService: AuthService
@@ -31,6 +37,8 @@ export class TweetsInvestigateComponent {
   account_number: string = '';
   list_tweet_acc: tweet[] = [];
   report_id: number = 0;
+  searchText = '';
+  sortDirection: string = 'asc';
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
@@ -47,5 +55,22 @@ export class TweetsInvestigateComponent {
         console.error(response.data);
         this.list_tweet_acc = response.data;
       });
+  }
+
+  sortDataByReportCounts(key: number) {
+    let aValue: number, bValue: number;
+
+    this.list_tweet_acc.sort((a, b) => {
+      if (key === 0) {
+        aValue = a.twitter_report_id;
+        bValue = b.twitter_report_id;
+      }
+      return this.sortDirection === 'asc' ? aValue - bValue : bValue - aValue;
+    });
+    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+  }
+
+  onPageChange(page: number) {
+    this.currentPage = page;
   }
 }

@@ -2,10 +2,13 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AuthService } from '../auth.service';
 import axios from 'axios';
-import { NgComponentOutlet, NgFor } from '@angular/common';
+import { NgComponentOutlet, NgFor, NgIf } from '@angular/common';
+import { SearchPipe } from '../search.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
 
 interface tweet {
-  twitter_report_id: string;
+  twitter_report_id: number;
   post_date: Date;
   twitter_username: string;
   tweet_link: string;
@@ -18,11 +21,14 @@ interface reportedAccountNumber {
 @Component({
   selector: 'app-tweets-clear',
   standalone: true,
-  imports: [RouterLink, NgFor],
+  imports: [RouterLink, NgFor, NgIf, SearchPipe, NgxPaginationModule, FormsModule],
   templateUrl: './tweets-clear.component.html',
   styleUrl: './tweets-clear.component.css'
 })
 export class TweetsClearComponent {
+
+  itemsPerPage: number = 5;
+  currentPage: number = 1;
   constructor(
     private activatedRoute: ActivatedRoute,
     private authService: AuthService
@@ -31,6 +37,9 @@ export class TweetsClearComponent {
   account_number: string = '';
   list_tweet_acc: tweet[] = [];
   report_id: number = 0;
+  searchText = '';
+  filtered_tweet: tweet[] = [];
+  sortDirection: string = 'asc';
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
@@ -47,5 +56,22 @@ export class TweetsClearComponent {
         console.error(response.data);
         this.list_tweet_acc = response.data;
       });
+  }
+
+  sortDataByReportCounts(key: number) {
+    let aValue: number, bValue: number;
+
+    this.list_tweet_acc.sort((a, b) => {
+      if (key === 0) {
+        aValue = a.twitter_report_id;
+        bValue = b.twitter_report_id;
+      }
+      return this.sortDirection === 'asc' ? aValue - bValue : bValue - aValue;
+    });
+    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+  }
+
+  onPageChange(page: number) {
+    this.currentPage = page;
   }
 }
