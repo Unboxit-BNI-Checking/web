@@ -96,8 +96,12 @@
                   </div>
                 </div>
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Attachment</label>
-                <div *ngFor="let attachment of getCurrentReport().attachment">
-                  <a [href]="attachment" target="_blank"><img [src]="attachment" class="w-full mb-4" *ngIf="attachment" style="max-width: 100px; max-height: 100px; width: auto; height: auto;"></a>
+                <div class="flex">
+                  <div *ngFor="let attachment of getCurrentReport().attachment" class="mr-4">
+                    <a [href]="attachment" target="_blank">
+                      <img [src]="attachment" class="w-full mb-4 rounded-lg" *ngIf="attachment" style="width: 90px; height: 90px;">
+                    </a>
+                  </div>
                 </div>
             </div>
             </form>

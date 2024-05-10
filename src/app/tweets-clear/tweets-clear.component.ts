@@ -27,7 +27,7 @@ interface reportedAccountNumber {
 })
 export class TweetsClearComponent {
 
-  itemsPerPage: number = 5;
+  itemsPerPage: number = 10;
   currentPage: number = 1;
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -38,7 +38,6 @@ export class TweetsClearComponent {
   list_tweet_acc: tweet[] = [];
   report_id: number = 0;
   searchText = '';
-  filtered_tweet: tweet[] = [];
   sortDirection: string = 'asc';
 
   ngOnInit(): void {

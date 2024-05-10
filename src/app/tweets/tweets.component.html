@@ -78,8 +78,8 @@
                 </th>
             </tr>
         </thead>
-        <tbody *ngIf="this.filtered_tweet.length > 0; else noData">
-            <tr *ngFor="let item of filtered_tweet | search: searchText | paginate: { currentPage: currentPage, itemsPerPage: itemsPerPage };" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+        <tbody *ngIf="this.list_tweet_acc.length > 0; else noData">
+            <tr *ngFor="let item of list_tweet_acc | search: searchText | paginate: { currentPage: currentPage, itemsPerPage: itemsPerPage };" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {{item.twitter_report_id}}
                 </th>

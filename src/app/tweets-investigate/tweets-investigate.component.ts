@@ -27,7 +27,7 @@ interface reportedAccountNumber {
 })
 export class TweetsInvestigateComponent {
 
-  itemsPerPage: number = 5;
+  itemsPerPage: number = 10;
   currentPage: number = 1;
   constructor(
     private activatedRoute: ActivatedRoute,
