@@ -57,8 +57,20 @@
                 <div class=" flex items-center justify-between">
                   <label class="block text-sm font-medium">Showing <strong>{{getCurrentIndex() + 1}}</strong> of <strong>{{reportList.length}}</strong></label>
                   <div class="flex items-center justify-center">
-                    <button type="button" class="text-white bg-orange-500 hover:bg-orange-200 hover:text-orange-500 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-orange-500 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center mr-2" (click)="previousReport()">Previous</button>
-                    <button type="button" class="text-white bg-orange-500 hover:bg-orange-200 hover:text-orange-500 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-orange-500 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center" (click)="nextReport()">Next</button>  
+                    <button
+                      type="button"
+                      class="text-white bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-orange-500 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                      (click)="previousReport()"
+                    >
+                    <img src="../assets/logo_previous.png" class="me-2" alt=""> Previous
+                    </button>
+                    <button
+                      type="button"
+                      class="text-white bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-orange-500 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center"
+                      (click)="nextReport()"
+                    >
+                      Next <img src="../assets/logo_next.png" class="ms-2" alt="">
+                    </button>
                   </div>
                 </div>
                 <div class="grid gap-4 mt-4 mb-4 sm:grid-cols-3 sm:gap-6 sm:mb-5">
