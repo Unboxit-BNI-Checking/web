@@ -1,0 +1,6 @@
+.disabled-link {
+    pointer-events: none;
+    /* Menonaktifkan klik */
+    opacity: 0.6;
+    /* Mengurangi kecerahan untuk memberi tahu pengguna bahwa link tidak aktif */
+}

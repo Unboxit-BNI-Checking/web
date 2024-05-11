@@ -26,4 +26,12 @@ export class AuthService {
     alert("Berhasil logout");
     localStorage.removeItem('access_token');
   }
+  public getAdminId(): string | null {
+    const token = this.getToken();
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      return decodedToken?.admin_id || null;
+    }
+    return null;
+  }
 }

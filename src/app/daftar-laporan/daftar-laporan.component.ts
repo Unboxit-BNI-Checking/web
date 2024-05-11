@@ -13,7 +13,8 @@ interface report {
   account_number: string;
   reports_count: number;
   status: number;
-  admin: string
+  admin: string;
+  admin_id: number;
 }
 
 @Component({
@@ -99,5 +100,9 @@ export class DaftarLaporanComponent implements OnInit {
 
   onPageChange(page: number) {
     this.currentPage = page;
+  }
+
+  getAdminId(){
+    return this.authService.getAdminId();
   }
 }

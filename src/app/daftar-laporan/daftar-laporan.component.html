@@ -114,8 +114,12 @@
                     <td class="px-6 py-4">
                         <a [routerLink]="'/detail-laporan/' + item.reported_account_id"
                         *ngIf="item.status == 1" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
-                        <a [routerLink]="'/detail-laporan-investigasi/' + item.reported_account_id"
-                            *ngIf="item.status == 2" class="text-white bg-blue-400 rounded-full p-2">See Details</a>
+                        <a [routerLink]="'/detail-laporan-investigasi/' + item.reported_account_id" *ngIf="item.status == 2"
+                            class="text-white bg-blue-400 rounded-full p-2"
+                            [style.pointer-events]="getAdminId() != item.admin_id ? 'none' : 'auto'"
+                            [style.opacity]="getAdminId() != item.admin_id ? 0.3 : 1" (click)="getAdminId() == item.admin_id">
+                            See Details
+                        </a>
                     </td>
                 </ng-container>
             </tr>

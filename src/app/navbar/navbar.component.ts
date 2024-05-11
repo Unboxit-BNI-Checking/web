@@ -19,4 +19,7 @@ export class NavbarComponent {
     this.authService.logout();
     window.location.reload();
   }
+  getAdmin(){
+    return this.authService.getAdminId();
+  }
 }
