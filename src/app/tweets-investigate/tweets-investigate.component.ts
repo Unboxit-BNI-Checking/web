@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AuthService } from '../auth.service';
 import axios from 'axios';
-import { NgFor, NgIf } from '@angular/common';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { SearchPipe } from '../search.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
@@ -31,7 +31,8 @@ export class TweetsInvestigateComponent {
   currentPage: number = 1;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private datePipe: DatePipe
   ) {}
 
   account_number: string = '';
@@ -68,6 +69,15 @@ export class TweetsInvestigateComponent {
       return this.sortDirection === 'asc' ? aValue - bValue : bValue - aValue;
     });
     this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+  }
+
+  formatDate(timestamp: string): string {
+    // Parse the timestamp into a Date object
+    const date = new Date(timestamp);
+    // Adjust for GMT +7 timezone offset
+    date.setHours(date.getHours() + 7);
+    // Format the date using DatePipe
+    return this.datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss') || '';
   }
 
   onPageChange(page: number) {

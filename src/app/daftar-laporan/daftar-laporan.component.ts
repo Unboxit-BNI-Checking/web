@@ -29,7 +29,7 @@ export class DaftarLaporanComponent implements OnInit {
 
   statusList: string[] = ["Dilaporkan", "Investigasi"];
   selectedStatus: number = 0;
-  itemsPerPage: number = 5;
+  itemsPerPage: number = 10;
   currentPage: number = 1;
 
   constructor(private authService: AuthService, private activatedRoute: ActivatedRoute) {
