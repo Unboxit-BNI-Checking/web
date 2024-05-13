@@ -1,7 +1,7 @@
 <div class="absolute inset-y-0 left-2 top-2 right-0 pl-64 pr-4 pt-14 overflow-y-auto">
     <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-2">
         <!-- Breadcrumb -->
-        <nav class="flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700" aria-label="Breadcrumb">
+        <nav class="flex px-5 py-3 text-gray-700  dark:bg-gray-800 dark:border-gray-700" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
             <li class="inline-flex items-center">
                 <a href="#" routerLink="/daftar-laporan" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
@@ -31,7 +31,7 @@
         <p class="text-black text-2xl font-semibold mb-2 ms-6">Tweets</p>
     </div>
     
-    <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
+    <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between ms-6 pb-4">
         <label for="table-search" class="sr-only">Search</label>
         <div class="relative">
             <div class="absolute inset-y-0 left-0 rtl:inset-r-0 rtl:right-0 flex items-center ps-3 pointer-events-none">
@@ -40,8 +40,8 @@
             <input type="text" [(ngModel)]="searchText" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items">
         </div>
     </div>
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ms-6">
+        <thead class="text-xs text-[#6B788E] bg-[#F5F6F7] dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
                     <div class="flex items-center">
@@ -94,5 +94,5 @@
             </tbody>
         </ng-template>
     </table>
-    <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+    <pagination-controls class="flex mt-4 justify-end" (pageChange)="onPageChange($event)"></pagination-controls>
 </div>

@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   public logout(): void {
-    alert("Berhasil logout");
+    // alert("Berhasil logout");
     localStorage.removeItem('access_token');
   }
   public getAdminId(): string | null {

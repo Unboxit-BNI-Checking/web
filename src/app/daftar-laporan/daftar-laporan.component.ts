@@ -51,9 +51,9 @@ export class DaftarLaporanComponent implements OnInit {
   async getReport(){
     try{
       const token = this.authService.getToken();
-      const response = await axios.get('/api/reportedAcc/website', {headers: {"Authorization": "Bearer " + token}});
+      const response = await axios.get('/api/reportedAcc/website', {headers: {"Authorization": "Bearer " + token}}).then((response) => this.report_list = response.data.data).catch((error) => alert(error));
       //console.error(response.data.data);
-      this.report_list = response.data.data;
+      
       this.report_list = this.report_list.filter((item) => item.status < 3);
       if (this.selectedStatus != 0) {
         this.filterData();

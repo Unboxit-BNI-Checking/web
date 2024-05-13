@@ -27,7 +27,7 @@
             <option *ngFor="let filter of statusList, let i = index" [value]="i+3">{{ filter }}</option>
         </select>
     </div>
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ms-6">
         <thead class="text-xs text-[#6B788E] bg-[#F5F6F7] dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
@@ -122,5 +122,5 @@
             </tbody>
         </ng-template>
     </table>
-    <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+    <pagination-controls class="flex mt-4 justify-end" (pageChange)="onPageChange($event)"></pagination-controls>
 </div>

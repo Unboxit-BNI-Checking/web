@@ -26,7 +26,7 @@ interface report {
 })
 export class DaftarSelesaiComponent implements OnInit {
 
-  statusList: string[] = ["Blokir", "Bebas Aduan"];
+  statusList: string[] = ["Blokir", "Bebas Aduan", "Ditolak"];
   selectedStatus: number = 0;
 
   constructor(private authService: AuthService, private datePipe: DatePipe) {
