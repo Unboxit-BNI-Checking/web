@@ -161,7 +161,7 @@ export class DashboardComponent implements OnInit {
     const getChartCurrentMonths = () => {
       return {
         series: [this.total_laporan_selesai, this.total_laporan_belum_selesai],
-        colors: ["#F37548", "#FEEEE9"],
+        colors: ["#F37548", "#fbbaa6"],
         chart: {
           height: 320,
           width: "100%",
