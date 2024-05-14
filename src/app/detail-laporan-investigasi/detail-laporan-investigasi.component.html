@@ -38,9 +38,12 @@
           <!-- Baris kedua -->
           <div class="bg-white h-24 rounded-2xl border border-gray-200 p-4">
             <a [href]="'/tweets-investigate/' + account_number_reported + '?report_id=' + reportedAccountId">
-              <button type="button" class="relative inline-flex items-center w-full px-4 py-4 text-sm font-medium  text-black hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+              <button type="button" class="relative inline-flex items-center w-full px-4 py-4 text-sm font-medium text-black hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
                 <img src="../assets/logo_x.png" class="w-5 h-5 me-2.5" alt="X">
-                {{getCurrentReport().twitter_reports_count}} Laporan Terkait 
+                {{getCurrentReport().twitter_reports_count}} Laporan Terkait
+                <span class="mx-2 flex-grow text-center">
+                </span>
+                <img src="../assets/logo_next.svg" class="w-5 h-5" alt="">
               </button>
             </a>
           </div>
@@ -167,7 +170,7 @@
                 data-modal-hide="blokir-modal"
                 (click)="closeModal('blokir-modal')"
                 type="button"
-                class="py-2.5 px-5 text-sm font-medium text-white bg-[#D6264F] hover:bg-[#FBE9ED] hover:text-[#D6264F] focus:outline-none  rounded-full border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                class="py-2.5 px-5 text-sm font-medium text-[#D6264F] bg-[#FBE9ED] hover:bg-[#f6d5de] focus:outline-none  rounded-full border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
               >
                 Batal
               </button>
@@ -175,7 +178,7 @@
                 data-modal-hide="blokir-modal"
                 (click)="blokir()"
                 type="button"
-                class="text-white ms-3 bg-[#D6264F] hover:bg-[#FBE9ED] hover:text-[#D6264F] focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center"
+                class="text-white ms-3 bg-[#D6264F] hover:bg-[#b61a42] focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center"
               >
                 Ubah
               </button>
@@ -229,7 +232,7 @@
               data-modal-hide="popup-modal"
               (click)="closeModal('bebasAduan-modal')"
               type="button"
-              class="py-2.5 px-5 text-sm font-medium text-orange-500 bg-orange-200 hover:bg-orange-500 hover:text-white focus:outline-none  rounded-full border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              class="py-2.5 px-5 text-sm font-medium text-orange-500 bg-[#FEEEE9] hover:bg-[#fdd7cb] focus:outline-none  rounded-full border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
               Batal
             </button>
@@ -237,7 +240,7 @@
               data-modal-hide="popup-modal"
               (click)="bebasAduan()"
               type="button"
-              class="text-orange-500 ms-3 bg-orange-200 hover:bg-orange-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center"
+              class="bg-[#F15922] hover:bg-[#e23d14] text-white ms-3 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center"
             >
               Ubah
             </button>
